@@ -11,7 +11,8 @@ import {
 // import { useNavigation} from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import TeamScreen from '../screens/home/screens/TeamScreen';
-import DetailsPlayerscreen from '../screens/home/screens/DetailsPlayerScreen'
+import DetailsPlayerscreen from '../screens/home/screens/DetailsPlayerScreen';
+import PlayerInfoStatsScreen from '../screens/home/screens/PlayerInfoStats';
 import {colors} from '../components/Colors'
 
 
@@ -64,6 +65,18 @@ const TeamStack =()=>{
           <View style={styles.wrap}>
             <Text style={styles.title}>{route.params.item.fullName}</Text>
             <Text style={styles.subtitle}>{route.params.item.type}</Text>
+          </View>
+        ),
+      })}/>
+
+      <TeamStack.Screen 
+      name="VIEW player info & Stats" component={PlayerInfoStatsScreen} 
+      options={({ route }) => ({
+        headerBackImageSource: require('./image/back.png') ,
+        headerTitle: () => (
+          <View style={styles.wrap}>
+            <Text style={[styles.title, { color: 'black' }]}>{route.params.item.fullName}</Text>
+            <Text style={[styles.subtitle, { color: 'black' }]}>{route.params.item.type}</Text>
           </View>
         ),
       })}/>

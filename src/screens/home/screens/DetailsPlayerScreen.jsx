@@ -13,12 +13,19 @@ import {
 } from 'react-native';
 
 import { colors } from '../../../components/Colors';
+import { useNavigation } from '@react-navigation/native';
 
 
 
 const DetailsPlayerscreen = ({ route})=> {
    
   const { item } = route.params;
+
+  const navigation = useNavigation();
+  
+  const onItemPress = (item) => {
+    navigation.navigate('VIEW player info & Stats', { item });
+  };
 
     const renderItem  = ()=>{
 
@@ -96,7 +103,7 @@ const DetailsPlayerscreen = ({ route})=> {
               </View>
             </View>
 
-            <TouchableOpacity style={styles.wrapButton}>
+            <TouchableOpacity onPress={() => onItemPress(item)} activeOpacity={1} style={styles.wrapButton}>
               <Text style={styles.titleButton}>VIEW player info & Stats</Text> 
             </TouchableOpacity>
           </View>

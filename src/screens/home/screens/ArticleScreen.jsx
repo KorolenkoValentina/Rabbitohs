@@ -4,7 +4,6 @@ import {
   View,
   Text,
   StyleSheet,
-  FlatList,
   SafeAreaView,
   ImageBackground,
   Image, 
@@ -20,54 +19,53 @@ import { colors } from '../../../components/Colors';
 const Articlerscreen = ()=> {
    
 
-    const renderItem  = ()=>{
+  const renderItem  = ()=>{
 
-      return (
+    return (
         
-        <View style={styles.wrap}>
-            <ImageBackground source={require('../images/videoArticle/image-3.png')}  style={styles.background}>
+      <View style={styles.wrap}>
+        <ImageBackground source={require('../images/videoArticle/image-3.png')}  style={styles.background}>
               <Text style={styles.title}>Rabbitohs rue missed opportunities in last-ditch</Text>
               <View style={styles.wrapConent}>
                 <Text style={styles.subtitle}>Sponsored by:</Text>
                 <Image source={require('../images/videoArticle/logo.png')} style={styles.sponsor}/>
               </View>
-            </ImageBackground>
-          <View style={styles.wrapItem}>
-            <Text style={styles.subtitleItem}>South Sydney Rabbitohs</Text>
-            <Text style={styles.titleItem}>The Rabbitohs have fallen short in the dying stages in the grand final rematch against Penrith, falling 26-22 at Accor Stadium.</Text>
-            <Text style={styles.textItem}>Leading by two points heading into the final five minutes, a late penalty and try with less than two to go effectively ended South Sydney’s top-four hopes.</Text>
-            <Text style={styles.textItem}>But it was the half chances throughout the night that will most sting the Rabbitohs, with a number of chances that went begging, inviting the defending premiers into the game and ultimately allowing them to finish over the top.</Text>
-            <Image source={require('../images/videoArticle/image-4.png')} style={styles.image}/>
-            <Text style={styles.imageTitle}>Match Highlights: Rabbitohs v Panthers</Text>
-            <Text style={styles.textItem}>The match was riddled with scoring opportunities that went astray, failing to build a sizeable lead against a side they needed to lift another gear for.</Text>
-            <Text style={styles.textItem}>The Rabbitohs have made a habit of scoring first in recent weeks, but the side found themselves behind early on after a bit of déjà vu from last year’s grand final, with Stephen Crichton swooping on a loose pass to run 50 metres and score.</Text>
-            <Image source={require('../images/videoArticle/image-4.png')} style={styles.image}/>
-            <Text style={styles.imageTitle}>Match Highlights: Rabbitohs v Panthers</Text>
-            <Text style={styles.textItem}>Just as the Panthers looked to be slipping away, a big shot on Crichton forced a mistake and South Sydney hit back with a textbook backline movement, with multiple the ball going through multiple sets of hands and finished off with a Campbell Graham.</Text>
-            <View style={styles.wrapQuote}>
-              <Image source={require('../images/videoArticle/icon-quotation.png')} style={{ margin: 10 }}/>
-              <Text style={styles.textQuote}>The outpouring of emotion and the heartfelt tributes for John over the past few days have been amazing for everyone at the Club       and for John’s family.</Text>
-              <Text style={styles.titleQuote}>Blake Solly, Rabbitohs CEO</Text>
-              <View style={styles.separator}></View>
+        </ImageBackground>
+        <View style={styles.wrapItem}>
+          <Text style={styles.subtitleItem}>South Sydney Rabbitohs</Text>
+          <Text style={styles.titleItem}>The Rabbitohs have fallen short in the dying stages in the grand final rematch against Penrith, falling 26-22 at Accor Stadium.</Text>
+          <Text style={styles.textItem}>Leading by two points heading into the final five minutes, a late penalty and try with less than two to go effectively ended South Sydney’s top-four hopes.</Text>
+          <Text style={styles.textItem}>But it was the half chances throughout the night that will most sting the Rabbitohs, with a number of chances that went begging, inviting the defending premiers into the game and ultimately allowing them to finish over the top.</Text>
+          <Image source={require('../images/videoArticle/image-4.png')} style={styles.image}/>
+          <Text style={styles.imageTitle}>Match Highlights: Rabbitohs v Panthers</Text>
+          <Text style={styles.textItem}>The match was riddled with scoring opportunities that went astray, failing to build a sizeable lead against a side they needed to lift another gear for.</Text>
+          <Text style={styles.textItem}>The Rabbitohs have made a habit of scoring first in recent weeks, but the side found themselves behind early on after a bit of déjà vu from last year’s grand final, with Stephen Crichton swooping on a loose pass to run 50 metres and score.</Text>
+          <Image source={require('../images/videoArticle/image-4.png')} style={styles.image}/>
+          <Text style={styles.imageTitle}>Match Highlights: Rabbitohs v Panthers</Text>
+          <Text style={styles.textItem}>Just as the Panthers looked to be slipping away, a big shot on Crichton forced a mistake and South Sydney hit back with a textbook backline movement, with multiple the ball going through multiple sets of hands and finished off with a Campbell Graham.</Text>
+          <View style={styles.wrapQuote}>
+            <Image source={require('../images/videoArticle/icon-quotation.png')} style={{ margin: 10 }}/>
+            <Text style={styles.textQuote}>The outpouring of emotion and the heartfelt tributes for John over the past few days have been amazing for everyone at the Club       and for John’s family.</Text>
+            <Text style={styles.titleQuote}>Blake Solly, Rabbitohs CEO</Text>
+            <View style={styles.separator}></View>
             
-            </View>
-             
-            <Text style={styles.textItem}>Just as the Panthers looked to be slipping away, a big shot on Crichton forced a mistake and South Sydney hit back with a textbook backline movement, with multiple the ball going through multiple sets of hands and finished off with a Campbell Graham.</Text>
           </View>
+             
+          <Text style={styles.textItem}>Just as the Panthers looked to be slipping away, a big shot on Crichton forced a mistake and South Sydney hit back with a textbook backline movement, with multiple the ball going through multiple sets of hands and finished off with a Campbell Graham.</Text>
+        </View>
           
              
-
-        </View>
-      )
-    }
-
+      </View>
+    )
+  }
 
 
-    return(
-        <SafeAreaView style={styles.container}>
-            <ScrollView>{renderItem()}</ScrollView>
-       </SafeAreaView>
-    );
+
+  return(
+    <SafeAreaView style={styles.container}>
+      <ScrollView>{renderItem()}</ScrollView>
+    </SafeAreaView>
+  );
 }
 const styles = StyleSheet.create({
   container: {
