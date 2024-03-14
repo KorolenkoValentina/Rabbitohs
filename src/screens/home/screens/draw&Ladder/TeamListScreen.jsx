@@ -130,7 +130,7 @@ const TeamListScreen = ({ route }) => {
     
           switch (section) {
             case 'Play by play':
-              navigation.navigate('Details Stats');
+              navigation.navigate('Details Stats',{roundData});
             break;
             // case 'Team Stats':
             //   navigation.navigate('TeamStatsScreen', { mockBacksYears});
