@@ -12,7 +12,7 @@ import {
   
 } from 'react-native';
 
-import { colors } from '../../../components/Colors';
+import { colors } from '../../../../components/Colors';
 import { useNavigation } from '@react-navigation/native';
 
 
@@ -24,16 +24,16 @@ const DetailsPlayerscreen = ({ route})=> {
   const navigation = useNavigation();
   
   const onItemPress = (item) => {
-    navigation.navigate('VIEW player info & Stats', { item });
+    navigation.navigate('VIEW player info & Stats', { item});
   };
 
-    const renderItem  = ()=>{
+    const renderItem = ({item}) => {
 
       return (
         
         <View style={styles.item}>
           <View style={styles.wrapItem}>
-            <ImageBackground source={require('../images/teamScreen/bg-player.png')}  style={styles.background}>
+            <ImageBackground source={require('../../images/teamScreen/bg-player.png')}  style={styles.background}>
               <Image source={item.image} style={styles.player}/>
             </ImageBackground>
             <View style={styles.generalInfo}>
@@ -119,7 +119,7 @@ const DetailsPlayerscreen = ({ route})=> {
     return(
 
       <SafeAreaView style={styles.container}>
-        <FlatList
+       <FlatList
           data={[item]}
           renderItem={renderItem}
           keyExtractor={(item) => item.id.toString() }

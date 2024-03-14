@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
-import {colors} from '../../../components/Colors';
+import {colors} from '../../../../components/Colors';
 
 
 export default function  LogInScreen (){
@@ -39,7 +39,7 @@ export default function  LogInScreen (){
     return (
         <SafeAreaView style={styles.container}>
           <View style={styles.wrap}>
-                <Image source={require('../images/logo.png')} style={styles.logo} />
+                <Image source={require('../../images/logo.png')} style={styles.logo} />
                 <Text style={styles.titleHeader}> Forgot password </Text>
                 <Text style={styles.subtitle}>Enter your account email and we will send you a recovery link.</Text>
 

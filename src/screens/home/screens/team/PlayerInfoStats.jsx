@@ -6,11 +6,13 @@ import {
   FlatList,
   SafeAreaView,
   Image, 
-  TouchableOpacity
+  TouchableOpacity,
   
 } from 'react-native';
 
-import { colors } from '../../../components/Colors';
+import { colors } from '../../../../components/Colors';
+import Switcher from '../../components/Switcher';
+import YearModal from '../../components/YearModal';
 
 
 
@@ -18,42 +20,23 @@ import { colors } from '../../../components/Colors';
 const PlayerInfoStatsScreen = ({ route})=> {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [selectedYear, setSelectedYear] = useState('2024');
+    const [activeSection, setActiveSection] = useState('Season stats');
+
+    const { item } = route.params;
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
-      };
-    
-
-    const selectYear = (year) => {
-        setSelectedYear(year);
-        setIsMenuOpen(false);
     };
-   
-  const { item } = route.params;
-
-  const renderMenu = () => {
-    if (!isMenuOpen) return null;
-
-    return (
-      <View style={styles.menu}>
-        <TouchableOpacity onPress={() => selectYear('2023')}>
-          <Text style={styles.menuItem}>2023</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => selectYear('2024')}>
-          <Text style={styles.menuItem}>2024</Text>
-        </TouchableOpacity>
-      </View>
-    );
-  };
-
-
+    
     const renderItem  = ()=>{
         const seasonStats = item.playerInfoStats.seasonStats[selectedYear];
         if (!seasonStats) return null;
 
       return (
         
+        
         <View style={styles.item}>
+            
             <Text style={styles.title}>Career stats</Text>
                  
             <View style={[styles.wrapItem, styles.sectionSecond]}>
@@ -61,22 +44,29 @@ const PlayerInfoStatsScreen = ({ route})=> {
                     <Text style={[styles.titleInfo, {color:colors.black}]}>APPEARANCES</Text> 
                     <Text style={styles.textInfo}>{item.playerInfoStats.careerStats.appearances}</Text> 
                 </View>
-                <Image source={require('../images/teamScreen/line.png')} />
+                <Image source={require('../../images/teamScreen/line.png')} />
                 <View style={styles.info}>
                     <Text style={[styles.titleInfo, {color:colors.black}]}>TRIES</Text> 
                     <Text style={styles.textInfo}>{item.playerInfoStats.careerStats.tries}</Text> 
                 </View>            
             </View>
+            <View style={styles.wrap}>
+                <Text style={styles.title}>Season stats {selectedYear}</Text>
+                <TouchableOpacity onPress={toggleMenu}>
+                <Image source={isMenuOpen ? require('../../images/profile/arrow.png') : require('../../images/profile/arrowDown.png')} style={styles.arrowIcon} />
+                </TouchableOpacity>
+            </View>
+            <YearModal 
+                isMenuOpen={isMenuOpen} 
+                toggleMenu={toggleMenu}
+                selectedYear={selectedYear} 
+                setSelectedYear={setSelectedYear} 
+            />
 
-            <Text style={styles.title}>Season stats ({selectedYear})</Text>
-            <TouchableOpacity onPress={toggleMenu}>
-                <Image source={require('../images/profile/arrowDown.png')} style={styles.arrowIcon} />
-            </TouchableOpacity>
-            {renderMenu()}
             <View style={styles.wrapItem}>
                 <View style={styles.seasonInfo}>
                     <View style={styles.wrapTitle}>
-                        <Image source={require('../images/profile/icons.png')} style={styles.icon} />
+                        <Image source={require('../../images/profile/icons.png')} style={styles.icon} />
                         <Text style={styles.titleInfo}>APPEARANCES</Text> 
                     </View>
                     <Text style={styles.textInfo}>{seasonStats.appearances}</Text> 
@@ -87,18 +77,18 @@ const PlayerInfoStatsScreen = ({ route})=> {
             <View style={styles.wrapItem}>
                 <View style={ styles.sectionFirst}>
                     <View style={styles.wrapTitle}>
-                        <Image source={require('../images/profile/rugbyIcons.png')} style={styles.icon} />
+                        <Image source={require('../../images/profile/rugbyIcons.png')} style={styles.icon} />
                         <Text style={styles.titleInfo}>SCORING</Text>
                         
                     </View>
-                    <Image source={require('../images/teamScreen/linehorisontal.png')} /> 
+                    <Image source={require('../../images/teamScreen/linehorisontal.png')} /> 
                 </View>
                 <View style={ styles.sectionSecond}>
                     <View style={styles.seasonInfo}>
                         <Text style={styles.subtitleInfo}>Tries</Text> 
                         <Text style={styles.textInfo}>{seasonStats.scoring.tries}</Text> 
                     </View> 
-                    <Image source={require('../images/teamScreen/line.png')} />
+                    <Image source={require('../../images/teamScreen/line.png')} />
                     <View style={styles.seasonInfo}>
                         <Text style={styles.subtitleInfo}>Goals</Text> 
                         <Text style={styles.textInfo}>{seasonStats.scoring.goals}</Text> 
@@ -110,23 +100,23 @@ const PlayerInfoStatsScreen = ({ route})=> {
             <View style={styles.wrapItem}>
                 <View style={ styles.sectionFirst}>
                     <View style={styles.wrapTitle}>
-                        <Image source={require('../images/profile/kickings.png')} style={styles.icon} />
+                        <Image source={require('../../images/profile/kickings.png')} style={styles.icon} />
                         <Text style={styles.titleInfo}>KICKING</Text>
                         
                     </View>
-                    <Image source={require('../images/teamScreen/linehorisontal.png')} /> 
+                    <Image source={require('../../images/teamScreen/linehorisontal.png')} /> 
                 </View>
                 <View style={ styles.sectionSecond}>
                     <View style={styles.seasonInfo}>
                         <Text style={styles.subtitleInfo}>Forced drop outs</Text> 
                         <Text style={styles.textInfo}>{seasonStats.kicking.forcedDropOuts}</Text> 
                     </View> 
-                    <Image source={require('../images/teamScreen/line.png')} />
+                    <Image source={require('../../images/teamScreen/line.png')} />
                     <View style={styles.seasonInfo}>
                         <Text style={styles.subtitleInfo}>Goal conversion rate</Text> 
                         <Text style={styles.textInfo}>{seasonStats.kicking.goalConversionRate}</Text> 
                     </View>
-                    <Image source={require('../images/teamScreen/line.png')} />
+                    <Image source={require('../../images/teamScreen/line.png')} />
                     <View style={styles.seasonInfo}>
                         <Text style={styles.subtitleInfo}>Tries</Text> 
                         <Text style={styles.textInfo}>{seasonStats.kicking.tries}</Text> 
@@ -139,18 +129,18 @@ const PlayerInfoStatsScreen = ({ route})=> {
             <View style={styles.wrapItem}>
                 <View style={ styles.sectionFirst}>
                     <View style={styles.wrapTitle}>
-                        <Image source={require('../images/profile/attack.png')} style={styles.icon} />
+                        <Image source={require('../../images/profile/attack.png')} style={styles.icon} />
                         <Text style={styles.titleInfo}>ATTACK</Text>
                         
                     </View>
-                    <Image source={require('../images/teamScreen/linehorisontal.png')} /> 
+                    <Image source={require('../../images/teamScreen/linehorisontal.png')} /> 
                 </View>
                 <View style={ styles.sectionSecond}>
                     <View style={styles.seasonInfo}>
                         <Text style={styles.subtitleInfo}>Try assists</Text> 
                         <Text style={styles.textInfo}>{seasonStats.attack.tryAssists}</Text> 
                     </View> 
-                    <Image source={require('../images/teamScreen/line.png')} />
+                    <Image source={require('../../images/teamScreen/line.png')} />
                     <View style={styles.seasonInfo}>
                         <Text style={styles.subtitleInfo}>Line break assists</Text> 
                         <Text style={styles.textInfo}>{seasonStats.attack.lineBreakAssists}</Text> 
@@ -162,18 +152,18 @@ const PlayerInfoStatsScreen = ({ route})=> {
             <View style={styles.wrapItem}>
                 <View style={ styles.sectionFirst}>
                     <View style={styles.wrapTitle}>
-                        <Image source={require('../images/profile/passing.png')} style={styles.icon} />
+                        <Image source={require('../../images/profile/passing.png')} style={styles.icon} />
                         <Text style={styles.titleInfo}>PASSING</Text>
                         
                     </View>
-                    <Image source={require('../images/teamScreen/linehorisontal.png')} /> 
+                    <Image source={require('../../images/teamScreen/linehorisontal.png')} /> 
                 </View>
                 <View style={ styles.sectionSecond}>
                     <View style={styles.seasonInfo}>
                         <Text style={styles.subtitleInfo}>Offloads</Text> 
                         <Text style={styles.textInfo}>{seasonStats.passing.offloads}</Text> 
                     </View> 
-                    <Image source={require('../images/teamScreen/line.png')} />
+                    <Image source={require('../../images/teamScreen/line.png')} />
                     <View style={styles.seasonInfo}>
                         <Text style={styles.subtitleInfo}>Receipts</Text> 
                         <Text style={styles.textInfo}>{seasonStats.passing.receipts}</Text> 
@@ -185,18 +175,18 @@ const PlayerInfoStatsScreen = ({ route})=> {
             <View style={styles.wrapItem}>
                 <View style={ styles.sectionFirst}>
                     <View style={styles.wrapTitle}>
-                        <Image source={require('../images/profile/defence.png')} style={styles.icon} />
+                        <Image source={require('../../images/profile/defence.png')} style={styles.icon} />
                         <Text style={styles.titleInfo}>DEFENCE</Text>
                         
                     </View>
-                    <Image source={require('../images/teamScreen/linehorisontal.png')} /> 
+                    <Image source={require('../../images/teamScreen/linehorisontal.png')} /> 
                 </View>
                 <View style={ styles.sectionSecond}>
                     <View style={styles.seasonInfo}>
                         <Text style={styles.subtitleInfo}>Tackles made</Text> 
                         <Text style={styles.textInfo}>{seasonStats.defence.tacklesMade}</Text> 
                     </View> 
-                    <Image source={require('../images/teamScreen/line.png')} />
+                    <Image source={require('../../images/teamScreen/line.png')} />
                     <View style={styles.seasonInfo}>
                         <Text style={styles.subtitleInfo}>Tackle efficiency</Text> 
                         <Text style={styles.textInfo}>{seasonStats.defence.tackleEfficiency}</Text> 
@@ -208,18 +198,18 @@ const PlayerInfoStatsScreen = ({ route})=> {
             <View style={styles.wrapItem}>
                 <View style={ styles.sectionFirst}>
                     <View style={styles.wrapTitle}>
-                        <Image source={require('../images/profile/runing.png')} style={styles.icon} />
+                        <Image source={require('../../images/profile/runing.png')} style={styles.icon} />
                         <Text style={styles.titleInfo}>RUNNING METRES</Text>
                         
                     </View>
-                    <Image source={require('../images/teamScreen/linehorisontal.png')} /> 
+                    <Image source={require('../../images/teamScreen/linehorisontal.png')} /> 
                 </View>
                 <View style={ styles.sectionSecond}>
                     <View style={styles.seasonInfo}>
                         <Text style={styles.subtitleInfo}>Avg.running metres</Text> 
                         <Text style={styles.textInfo}>{seasonStats.runningMetres.avgrunningMetres}</Text> 
                     </View> 
-                    <Image source={require('../images/teamScreen/line.png')} />
+                    <Image source={require('../../images/teamScreen/line.png')} />
                     <View style={styles.seasonInfo}>
                         <Text style={styles.subtitleInfo}>Total running metres</Text> 
                         <Text style={styles.textInfo}>{seasonStats.runningMetres.totalrunningMetres}</Text> 
@@ -231,18 +221,18 @@ const PlayerInfoStatsScreen = ({ route})=> {
             <View style={styles.wrapItem}>
                 <View style={ styles.sectionFirst}>
                     <View style={styles.wrapTitle}>
-                        <Image source={require('../images/profile/fantasy.png')} style={styles.icon} />
+                        <Image source={require('../../images/profile/fantasy.png')} style={styles.icon} />
                         <Text style={styles.titleInfo}>FANTASY</Text>
                         
                     </View>
-                    <Image source={require('../images/teamScreen/linehorisontal.png')} /> 
+                    <Image source={require('../../images/teamScreen/linehorisontal.png')} /> 
                 </View>
                 <View style={ styles.sectionSecond}>
                     <View style={styles.seasonInfo}>
                         <Text style={styles.subtitleInfo}>Total points</Text> 
                         <Text style={styles.textInfo}>{seasonStats.fantasy.totalPoints}</Text> 
                     </View> 
-                    <Image source={require('../images/teamScreen/line.png')} />
+                    <Image source={require('../../images/teamScreen/line.png')} />
                     <View style={styles.seasonInfo}>
                         <Text style={styles.subtitleInfo}>Avg. points</Text> 
                         <Text style={styles.textInfo}>{seasonStats.fantasy.avgPoints}</Text> 
@@ -255,13 +245,7 @@ const PlayerInfoStatsScreen = ({ route})=> {
                 
         </View>
               
-
-        
-
-         
-             
-
-        
+               
       )
     }
 
@@ -270,6 +254,24 @@ const PlayerInfoStatsScreen = ({ route})=> {
     return(
 
       <SafeAreaView style={styles.container}>
+        
+        {/* <Switcher
+            sections={['Season stats', 'Round stats', 'Latest news']}
+                onSectionChange={(section) => {
+                    console.log('Selected section:', section);
+       
+            }}
+        /> */}
+        <Switcher
+                sections={['Season stats', 'Round stats', 'Latest news']}
+                activeSection={activeSection}
+                onSectionChange={(section) => {
+                    setActiveSection(section);
+                    // Handle section change here, you can add additional logic if needed
+                    console.log('Selected section:', section);
+                }}
+            />
+   
         <FlatList
           data={[item]}
           renderItem={renderItem}
@@ -279,21 +281,24 @@ const PlayerInfoStatsScreen = ({ route})=> {
     );
 }
 const styles = StyleSheet.create({
+
   container: {
     flex: 1,
-    backgroundColor:colors.lightgrey2,
-    
+    backgroundColor:colors.lightgrey2,    
       
   },
+
   item:{
     marginHorizontal:25,
   },
+
   wrapItem:{
     backgroundColor:colors.white,
     borderRadius:12,
     marginBottom:16
     
    },
+
    sectionFirst:{
     alignItems:'center',
     marginBottom:16
@@ -347,6 +352,16 @@ const styles = StyleSheet.create({
     marginVertical:16,
 
    },
+   arrowIcon:{
+        marginLeft:5
+    },
+
+    wrap:{
+        flexDirection:'row',
+        alignItems: 'center', 
+        
+
+    },
    icon:{
     marginRight:10
    }

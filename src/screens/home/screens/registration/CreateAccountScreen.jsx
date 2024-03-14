@@ -12,10 +12,13 @@ import {
 } from 'react-native';
 
 
-import {colors} from '../../../components/Colors';
+import {colors} from '../../../../components/Colors';
 import { useNavigation } from '@react-navigation/native';
 
 export default function  SignUpScreen (){
+  const [firstName, setFirstName] = useState('');
+  const [LastName, setLasttName] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -23,7 +26,7 @@ export default function  SignUpScreen (){
 
   const navigation = useNavigation();
 
-  const handleConfirm = () => {
+  const handleSignUp = () => {
     // Додайте вашу логіку реєстрації тут
     console.log('Signing up...');
   };
@@ -45,20 +48,34 @@ export default function  SignUpScreen (){
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.wrap}>
-            <Image source={require('../images/logo.png')} style={styles.logo} />
-            <Text style={styles.titleHeader}> Resset password </Text>
+            <Image source={require('../../images/logo.png')} style={styles.logo} />
+            <Text style={styles.titleHeader}> Create an account </Text>
+            <View style={styles.wrapFullNane}>
+                <TextInput
+                style={styles.input}
+                onChangeText={setFirstName}
+                value={firstName}
+                placeholder="First Name"
+                />
+                <TextInput
+                style={styles.input}
+                onChangeText={setLasttName}
+                value={LastName}
+                placeholder="First Name"
+                />
+            </View>
 
             <View style={styles.passwordInput}>
                 <TextInput
                 style={styles.input}
-                placeholder="New password"
+                placeholder="Enter your password"
                 secureTextEntry={!showPassword}
                 onChangeText={handlePasswordChange}
                 value={password}
                 required
                 />
                 <TouchableOpacity onPress={toggleShowPassword} style={styles.eyeIcon}>
-                    <Image source={showPassword ? require('../images/eye.png') : require('../images/eye.png')}
+                    <Image source={showPassword ? require('../../images/eye.png') : require('../../images/eye.png')}
                     style={styles.eyeIcon}
                     />
                 </TouchableOpacity>
@@ -66,24 +83,24 @@ export default function  SignUpScreen (){
             <View style={styles.passwordInput}>
                 <TextInput
                 style={styles.input}
-                placeholder="Confirm new password"
+                placeholder="Confirm your password"
                 secureTextEntry={!showPassword}
                 onChangeText={setConfirmPassword}
                 value={confirmPassword}
                 required
                 />
                 <TouchableOpacity onPress={toggleShowPassword} style={styles.eyeIcon}>
-                    <Image source={showPassword ? require('../images/eye.png') : require('../images/eye.png')}
+                    <Image source={showPassword ? require('../../images/eye.png') : require('../../images/eye.png')}
                         style={styles.eyeIcon}
                     />
                 </TouchableOpacity>
             </View>
 
-            <TouchableOpacity style={styles.wrapButton} onPress={handleConfirm} >
-                <Text style={styles.titleButton}>Confirm</Text> 
+            <TouchableOpacity style={styles.wrapButton} onPress={handleSignUp} >
+                <Text style={styles.titleButton}>SUBMIT</Text> 
             </TouchableOpacity>
             <View style={styles.wrapTitle}>
-                <Text>I remember my password</Text>
+                <Text>Already have an account?</Text>
                 <TouchableOpacity>
                     <Text style={[styles.title, { textDecorationLine: 'underline' }]} onPress={navigateToLogIn}> Login</Text>
                 </TouchableOpacity>

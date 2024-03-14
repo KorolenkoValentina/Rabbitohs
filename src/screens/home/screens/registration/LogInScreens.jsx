@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
-import {colors} from '../../../components/Colors';
+import {colors} from '../../../../components/Colors';
 
 
 export default function  LogInScreen (){
@@ -43,7 +43,7 @@ export default function  LogInScreen (){
     return (
         <SafeAreaView style={styles.container}>
           <View style={styles.wrap}>
-                <Image source={require('../images/logo.png')} style={styles.logo} />
+                <Image source={require('../../images/logo.png')} style={styles.logo} />
                 <Text style={styles.titleHeader}> Login </Text>
 
                 <View style={styles.emailInput}>
@@ -66,7 +66,7 @@ export default function  LogInScreen (){
                     required
                     />
                     <TouchableOpacity onPress={toggleShowPassword} style={styles.eyeIcon}>
-                        <Image source={showPassword ? require('../images/eye.png') : require('../images/eye.png')}
+                        <Image source={showPassword ? require('../../images/eye.png') : require('../../images/eye.png')}
                             style={styles.eyeIcon}
                         />
                     </TouchableOpacity>

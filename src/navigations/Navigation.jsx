@@ -12,7 +12,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeStack from './HomeStack';
 import MomentsScreen from '../screens/home/screens/MomentsScreen';
-import DrawLadderScreen from '../screens/home/screens/DrawLadderScreen';
+import DrawLadderStack from './DrawLadderStack';
 import TeamStack from './TeamStack'
 import AccountScreen from '../screens/home/screens/AccountScreen';
 
@@ -54,7 +54,7 @@ const MyTabs =()=> {
         
         tabBarIcon:DrawLadderIcon,
       }}
-       name="Draw & Ladder" component={DrawLadderScreen} />
+       name="Draw & Ladder" component={DrawLadderStack} />
 
       <Tab.Screen
       options={{
@@ -87,7 +87,7 @@ const  MyStack=()=> {
     }}>
       <Stack.Screen name="New" component={MyTabs} />
       <Stack.Screen name="Moment" component={MomentsScreen} />
-      <Stack.Screen name="Draw & Ladder" component={DrawLadderScreen} />
+      <Stack.Screen name="Draw & Ladder" component={DrawLadderStack} />
       <Stack.Screen name="Teams" component={TeamStack} />
       <Stack.Screen name="Account" component={AccountScreen} />
     </Stack.Navigator>

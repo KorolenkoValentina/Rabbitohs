@@ -1,11 +1,13 @@
 export const mockBacksData = [
   {
+
     id: '1',
     fullName:'Alex Johnston',
     type:'Fullback',
     dateOfBirth:'16 Jan 91',
     birthPlace:'Dewsbury, UK',
     image: require('../images/teamScreen/players.png'),
+    imageTeam: require('../images/teamScreen/player2.png'),
     nickName:'Trellmit',
     age:'25',
     height:'193 cm',
@@ -94,13 +96,14 @@ export const mockBacksData = [
 
   {
     id: '2',
-    fullName:'Alex Johnston',
+    fullName:'Ryan James',
     type:'Fullback',
-    dateOfBirth:'16 Jan 91',
+    dateOfBirth:'17 Jan 92',
     birthPlace:'Dewsbury, UK',
     image: require('../images/teamScreen/players.png'),
+    imageTeam: require('../images/teamScreen/player2.png'),
     nickName:'Trellmit',
-    age:'25',
+    age:'26',
     height:'193 cm',
     weight:'115 kg',
     debutClub:'Sydney Roosters',
@@ -187,13 +190,14 @@ export const mockBacksData = [
 
   {
     id: '3',
-    fullName:'Alex Johnston',
+    fullName:'Mike Hook',
     type:'Fullback',
-    dateOfBirth:'16 Jan 91',
+    dateOfBirth:'13 Jan 90',
     birthPlace:'Dewsbury, UK',
     image: require('../images/teamScreen/players.png'),
+    imageTeam: require('../images/teamScreen/player2.png'),
     nickName:'Trellmit',
-    age:'25',
+    age:'27',
     height:'193 cm',
     weight:'115 kg',
     debutClub:'Sydney Roosters',
@@ -285,6 +289,7 @@ export const mockBacksData = [
     dateOfBirth:'16 Jan 91',
     birthPlace:'Dewsbury, UK',
     image: require('../images/teamScreen/players.png'),
+    imageTeam: require('../images/teamScreen/player2.png'),
     nickName:'Trellmit',
     age:'25',
     height:'193 cm',
@@ -369,23 +374,24 @@ export const mockBacksData = [
 
       }
     }
-
+    
   },
 
-  
+
 
   
 ];
 
 export const mockForwardData = [
-
   {
+   
     id: '11',
     fullName:'Alex Johnston',
     type:'Fullback',
     dateOfBirth:'16 Jan 91',
     birthPlace:'Dewsbury, UK',
     image: require('../images/teamScreen/players.png'),
+    imageTeam: require('../images/teamScreen/player2.png'),
     nickName:'Trellmit',
     age:'25',
     height:'193 cm',
@@ -480,6 +486,7 @@ export const mockForwardData = [
     dateOfBirth:'16 Jan 91',
     birthPlace:'Dewsbury, UK',
     image: require('../images/teamScreen/players.png'),
+    imageTeam: require('../images/teamScreen/player2.png'),
     nickName:'Trellmit',
     age:'25',
     height:'193 cm',
@@ -573,6 +580,7 @@ export const mockForwardData = [
     dateOfBirth:'16 Jan 91',
     birthPlace:'Dewsbury, UK',
     image: require('../images/teamScreen/players.png'),
+    imageTeam: require('../images/teamScreen/player2.png'),
     nickName:'Trellmit',
     age:'25',
     height:'193 cm',
@@ -666,6 +674,7 @@ export const mockForwardData = [
     dateOfBirth:'16 Jan 91',
     birthPlace:'Dewsbury, UK',
     image: require('../images/teamScreen/players.png'),
+    imageTeam: require('../images/teamScreen/player2.png'),
     nickName:'Trellmit',
     age:'25',
     height:'193 cm',
@@ -759,6 +768,7 @@ export const mockForwardData = [
     dateOfBirth:'16 Jan 91',
     birthPlace:'Dewsbury, UK',
     image: require('../images/teamScreen/players.png'),
+    imageTeam: require('../images/teamScreen/player2.png'),
     nickName:'Trellmit',
     age:'25',
     height:'193 cm',
@@ -839,15 +849,13 @@ export const mockForwardData = [
             totalPoints: '552', 
             avgPoints: '22.6' 
           },
+          
+
         }
 
       }
-    }
-
+    },
   },
-  
-
-    
-  
+ 
   
 ];

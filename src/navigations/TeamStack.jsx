@@ -10,9 +10,9 @@ import {
 
 // import { useNavigation} from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import TeamScreen from '../screens/home/screens/TeamScreen';
-import DetailsPlayerscreen from '../screens/home/screens/DetailsPlayerScreen';
-import PlayerInfoStatsScreen from '../screens/home/screens/PlayerInfoStats';
+import TeamScreen from '../screens/home/screens/team/TeamScreen';
+import DetailsPlayerscreen from '../screens/home/screens/team/DetailsPlayerScreen';
+import PlayerInfoStatsScreen from '../screens/home/screens/team/PlayerInfoStats';
 import {colors} from '../components/Colors'
 
 

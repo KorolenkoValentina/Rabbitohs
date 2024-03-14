@@ -39,20 +39,20 @@ const HomeScreen = () => {
               </View>
               <Image source={require('../images/homeScreen/news-1.png')}  style={styles.itemImage}/>
             </TouchableOpacity>
-            <View style={styles.newsItem}>
+            <TouchableOpacity onPress={onItemPress} activeOpacity={1}style={styles.newsItem}>
               <View style={styles.itemContext}>
                 <Text style={styles.itemSubtitle}>Pathways</Text>
                 <Text style={styles.itemtitle}>Rabbitohs Pathways Endure Tough</Text>
               </View>
               <Image source={require('../images/homeScreen/news-2.png')}  style={styles.itemImage}/>
-            </View>
-            <View style={styles.newsItem}>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={onItemPress} activeOpacity={1} style={styles.newsItem}>
               <View style={styles.itemContext}>
                 <Text style={styles.itemSubtitle}>Pathways</Text>
                 <Text style={styles.itemtitle}>Rabbitohs Pathways Endure Tough</Text>
               </View>
               <Image source={require('../images/homeScreen/news-3.png')}  style={styles.itemImage}/>
-            </View>
+            </TouchableOpacity>
           </View>
 
           <View style={styles.discoverSection}>

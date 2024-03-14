@@ -12,8 +12,8 @@ import {
   
 } from 'react-native';
 
-import {mockBacksData, mockForwardData} from '../components/MockData'
-import { colors } from '../../../components/Colors';
+import {mockBacksData, mockForwardData} from '../../components/MockData'
+import { colors } from '../../../../components/Colors';
 import { useNavigation } from '@react-navigation/native';
 
 
@@ -33,7 +33,7 @@ const PlayerList = ({ data, item, index,}) => {
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <ImageBackground
-          source={require('../images/teamScreen/bgList.png')} 
+          source={require('../../images/teamScreen/bgList.png')} 
             style={styles.background}
             >
           
