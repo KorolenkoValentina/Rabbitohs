@@ -132,12 +132,12 @@ const TeamListScreen = ({ route }) => {
             case 'Play by play':
               navigation.navigate('Details Stats',{roundData});
             break;
-            // case 'Team Stats':
-            //   navigation.navigate('TeamStatsScreen', { mockBacksYears});
-            // break;
-            // case 'Player Stats':
-            //   navigation.navigate('PlayerStatsScreen', { mockBacksYears});
-            // break;
+            case 'Team Stats':
+              navigation.navigate('Team Stats', {roundData});
+            break;
+            case 'Player Stats':
+              navigation.navigate('Player Stats', {roundData});
+            break;
       
             default:
         

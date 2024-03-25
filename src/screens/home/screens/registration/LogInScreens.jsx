@@ -13,6 +13,7 @@ import {
 
 import { useNavigation } from '@react-navigation/native';
 import {colors} from '../../../../components/Colors';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 export default function  LogInScreen (){
@@ -25,15 +26,22 @@ export default function  LogInScreen (){
     const toggleShowPassword = () => {
         setShowPassword(!showPassword);
     };
-    const handleLogin = () => {
+
+    const handleLogin = async () => {
+       
+        await AsyncStorage.setItem('isLoggedIn', 'true');
         
-        console.log('Email:', email);
-        console.log('Password:', password);
+        navigation.replace('MainTabs'); 
       };
     
     const navigateToSignUp = () => {
         navigation.navigate('Sign Up');
     };
+
+    const navigateToPassword = () => {
+        navigation.navigate('Forgot password');
+    };
+
 
     // const isEmailValid = (email) => {
     //     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -71,7 +79,10 @@ export default function  LogInScreen (){
                         />
                     </TouchableOpacity>
                 </View>
-                <Text style={styles.title}>Forgot password?</Text>
+                </View>
+                <TouchableOpacity onPress={navigateToPassword }>
+                    <Text style={styles.title}>Forgot password?</Text>
+                </TouchableOpacity>
                 <TouchableOpacity style={styles.wrapButton} onPress={handleLogin} >
               
                     <Text style={styles.titleButton}>LOGIN </Text> 
@@ -84,7 +95,7 @@ export default function  LogInScreen (){
                     </TouchableOpacity>
                 </View>
             
-            </View>
+            
         </SafeAreaView>
     );
 }
@@ -94,9 +105,13 @@ const styles = StyleSheet.create({
     container: {
       flex: 1, 
       justifyContent: 'center',
-      alignItems: 'center',
-      padding: 16,
+      marginHorizontal:25
       
+    },
+
+    wrap:{
+      alignItems: 'center',
+
     },
     
     logo:{
@@ -114,21 +129,21 @@ const styles = StyleSheet.create({
     input: {
         height: 55,
         borderColor: colors.darkGrey,
-        borderWidth: 1,
+        borderBottomWidth:1,
         marginBottom: 24,
         paddingLeft: 8,
-        paddingRight: 16,
         width: 327,
         color:colors.extraDarkGrey
     },
     passwordInput: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginBottom: 14,
     },
 
     wrapTitle:{
         flexDirection:'row',
+       justifyContent:'center',
+       
     
     },
 
@@ -136,7 +151,8 @@ const styles = StyleSheet.create({
         backgroundColor: colors.green,
         borderRadius: 5,
         paddingVertical: 10,
-        paddingHorizontal: 18,
+        marginTop:30,
+        marginBottom:50
         
     },
 
@@ -148,7 +164,9 @@ const styles = StyleSheet.create({
 
     title:{
         fontSize:14,
-        color:colors.green
+        color:colors.green,
+        textAlign:'right',
+        textDecorationLine:'underline'
     },
     eyeIcon: {
         position: 'absolute',

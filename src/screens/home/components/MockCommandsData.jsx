@@ -91,44 +91,44 @@ export const mockBacksYears = [
               pd: '12',
               pts: '2',
               possessions:{
-                possession: '47 %',
+                possession: '55',
                 timeInPossession: 29.38,
                 completionRate:{
-                    degrees:'81 %',
-                    fraction:'27/39'
+                    degrees:'81',
+                    fraction:'35/43'
                 }
               },
               attack: {
-                allRuns: 187,
+                allRuns: 149,
                 allRunMetres: 1771,
                 postContactMetres: 634,
-                averagePlayTheBallSpeed: '3.79s'
+                averagePlayTheBallSpeed: '2.35'
               },
               pasiing:{
                 offloads:5,
                 totalPasses:233,
-                dummyPasses:15
+                dummyPasses:13
 
               },
               kicking:{
                 kicks:21,
                 kickDefusal:{
-                    degrees:'81 %',
-                    fraction:'35/43'
+                    degrees:'55',
+                    fraction:'25/30'
 
                 },
                 kickingMetres:433,
               },
               defence:{
-                effectiveTackle:'81,12 %',
+                effectiveTackle:'74',
                 tacklesMade:322,
                 intercepts:2
 
               },
               negativePlay:{
-                errors:9,
-                penaltiesConceded:5,
-                ruckIfringements:1,
+                errors:15,
+                penaltiesConceded:4,
+                ruckIfringements:2,
                 inside10Metres:1
 
               },
@@ -162,7 +162,7 @@ export const mockBacksYears = [
                     imageTeam: require('../images/teamScreen/player1.png'),
                     tackles: 20,
                     runMetres: 205,
-                    lineBreaks: 4,
+                    lineBreaks: 1,
                     fantasyPoints: 79
                   },
                   {
@@ -195,9 +195,9 @@ export const mockBacksYears = [
                     type: 'FULLBACK',
                     image: require('../images/teamScreen/player.png'),
                     imageTeam: require('../images/teamScreen/player1.png'),
-                    tackles: 20,
+                    tackles: 25,
                     runMetres: 205,
-                    lineBreaks: 4,
+                    lineBreaks: 1,
                     fantasyPoints: 79
                   },
                   {
@@ -206,7 +206,7 @@ export const mockBacksYears = [
                     type: 'FULLBACK',
                     image: require('../images/teamScreen/player.png'),
                     imageTeam: require('../images/teamScreen/player1.png'),
-                    tackles: 20,
+                    tackles: 26,
                     runMetres: 200,
                     lineBreaks: 1,
                     fantasyPoints: 49
@@ -217,7 +217,7 @@ export const mockBacksYears = [
                     type: 'FULLBACK',
                     image: require('../images/teamScreen/player.png'),
                     imageTeam: require('../images/teamScreen/player1.png'),
-                    tackles: 21,
+                    tackles: 27,
                     runMetres: 198,
                     lineBreaks: 3,
                     fantasyPoints: 73
@@ -230,8 +230,8 @@ export const mockBacksYears = [
                     imageTeam: require('../images/teamScreen/player1.png'),
                     tackles: 20,
                     runMetres: 200,
-                    lineBreaks: 1,
-                    fantasyPoints: 49
+                    lineBreaks: 3,
+                    fantasyPoints: 82
                   },
                   {
                     id: '108',
@@ -239,9 +239,9 @@ export const mockBacksYears = [
                     type: 'FULLBACK',
                     image: require('../images/teamScreen/player.png'),
                     imageTeam: require('../images/teamScreen/player1.png'),
-                    tackles: 20,
+                    tackles: 21,
                     runMetres: 200,
-                    lineBreaks: 1,
+                    lineBreaks: 4,
                     fantasyPoints: 49
                   },
                 ]
@@ -260,18 +260,18 @@ export const mockBacksYears = [
               pd: '-12',
               pts: '0',
               possessions:{
-                possession: '53 %',
+                possession: '73',
                 timeInPossession: 26.52,
                 completionRate:{
-                    degrees:'69 %',
+                    degrees:'69',
                     fraction:'27/39'
                 }
               },
               attack: {
-                allRuns: 159,
+                allRuns: 199,
                 allRunMetres: 1560,
                 postContactMetres: 521,
-                averagePlayTheBallSpeed: '3.79s'
+                averagePlayTheBallSpeed: '3.79'
               },
               pasiing:{
                 offloads:7,
@@ -282,22 +282,22 @@ export const mockBacksYears = [
               kicking:{
                 kicks:16,
                 kickDefusal:{
-                    degrees:'69 %',
-                    fraction:'27/39'
+                    degrees:'70',
+                    fraction:'35/44'
 
                 },
                 kickingMetres:432,
               },
               defence:{
-                effectiveTackle:'69,32 %',
+                effectiveTackle:'56',
                 tacklesMade:366,
-                intercepts:0
+                intercepts:1
 
               },
               negativePlay:{
-                errors:12,
+                errors:9,
                 penaltiesConceded:7,
-                ruckIfringements:1,
+                ruckIfringements:4,
                 inside10Metres:2
 
               },
@@ -371,14 +371,14 @@ export const mockBacksYears = [
                   },
                   {
                     id: '205',
-                    fullName: 'Cody WalkerRyan James',
+                    fullName: 'Ryan James',
                     type: 'FULLBACK',
                     image: require('../images/teamScreen/players.png'),
                     imageTeam: require('../images/teamScreen/player2.png'),
                     tackles: 24,
                     runMetres: 203,
                     lineBreaks: 1,
-                    fantasyPoints: 53
+                    fantasyPoints: 75
                   },
                   {
                     id: '206',
@@ -410,7 +410,7 @@ export const mockBacksYears = [
                     imageTeam: require('../images/teamScreen/player2.png'),
                     tackles: 26,
                     runMetres: 201,
-                    lineBreaks: 1,
+                    lineBreaks: 4,
                     fantasyPoints: 32
                   },
                 ]
@@ -432,10 +432,10 @@ export const mockBacksYears = [
               pd: '-10',
               pts: '0',
               possessions:{
-                possession: 47,
+                possession: '47',
                 timeInPossession: 29.38,
                 completionRate:{
-                    degrees:'81 %',
+                    degrees:'81',
                     fraction:'27/39'
                 }
               },
@@ -443,7 +443,7 @@ export const mockBacksYears = [
                 allRuns: 20,
                 allRunMetres: 1771,
                 postContactMetres: 1571,
-                averagePlayTheBallSpeed: '3.79s'
+                averagePlayTheBallSpeed: '3.79'
               },
               pasiing:{
                 offloads:5,
@@ -454,14 +454,14 @@ export const mockBacksYears = [
               kicking:{
                 kicks:21,
                 kickDefusal:{
-                    degrees:'81 %',
+                    degrees:'76',
                     fraction:'27/39'
 
                 },
                 kickingMetres:433,
               },
               defence:{
-                effectiveTackle:'81,12 %',
+                effectiveTackle:'85',
                 tacklesMade:322,
                 intercepts:2
 
@@ -545,7 +545,7 @@ export const mockBacksYears = [
                     type: 'FULLBACK',
                     image: require('../images/teamScreen/player.png'),
                     imageTeam: require('../images/teamScreen/player1.png'),
-                    tackles: 20,
+                    tackles: 22,
                     runMetres: 200,
                     lineBreaks: 1,
                     fantasyPoints: 49
@@ -556,7 +556,7 @@ export const mockBacksYears = [
                     type: 'FULLBACK',
                     image: require('../images/teamScreen/player.png'),
                     imageTeam: require('../images/teamScreen/player1.png'),
-                    tackles: 21,
+                    tackles: 18,
                     runMetres: 198,
                     lineBreaks: 3,
                     fantasyPoints: 73
@@ -567,7 +567,7 @@ export const mockBacksYears = [
                     type: 'FULLBACK',
                     image: require('../images/teamScreen/player.png'),
                     imageTeam: require('../images/teamScreen/player1.png'),
-                    tackles: 20,
+                    tackles: 17,
                     runMetres: 200,
                     lineBreaks: 1,
                     fantasyPoints: 49
@@ -578,7 +578,7 @@ export const mockBacksYears = [
                     type: 'FULLBACK',
                     image: require('../images/teamScreen/player.png'),
                     imageTeam: require('../images/teamScreen/player1.png'),
-                    tackles: 20,
+                    tackles: 32,
                     runMetres: 200,
                     lineBreaks: 1,
                     fantasyPoints: 49
@@ -600,10 +600,10 @@ export const mockBacksYears = [
               pd: '10',
               pts: '2',
               possessions:{
-                possession: '47 %',
+                possession: '47',
                 timeInPossession: 29.38,
                 completionRate:{
-                    degrees:'81 %',
+                    degrees:'69',
                     fraction:'27/39'
                 }
               },
@@ -611,7 +611,7 @@ export const mockBacksYears = [
                 allRuns: 187,
                 allRunMetres: 1771,
                 postContactMetres: 634,
-                averagePlayTheBallSpeed: '3.79s'
+                averagePlayTheBallSpeed: '2.89'
               },
               pasiing:{
                 offloads:5,
@@ -622,14 +622,14 @@ export const mockBacksYears = [
               kicking:{
                 kicks:21,
                 kickDefusal:{
-                    degrees:'81 %',
+                    degrees:'96',
                     fraction:'35/43'
 
                 },
                 kickingMetres:433,
               },
               defence:{
-                effectiveTackle:'81,12 %',
+                effectiveTackle:'85',
                 tacklesMade:322,
                 intercepts:2
 
@@ -713,7 +713,7 @@ export const mockBacksYears = [
                     type: 'FULLBACK',
                     image: require('../images/teamScreen/player.png'),
                     imageTeam: require('../images/teamScreen/player1.png'),
-                    tackles: 20,
+                    tackles: 26,
                     runMetres: 200,
                     lineBreaks: 1,
                     fantasyPoints: 49
@@ -724,7 +724,7 @@ export const mockBacksYears = [
                     type: 'FULLBACK',
                     image: require('../images/teamScreen/player.png'),
                     imageTeam: require('../images/teamScreen/player1.png'),
-                    tackles: 21,
+                    tackles: 17,
                     runMetres: 198,
                     lineBreaks: 3,
                     fantasyPoints: 73
@@ -735,7 +735,7 @@ export const mockBacksYears = [
                     type: 'FULLBACK',
                     image: require('../images/teamScreen/player.png'),
                     imageTeam: require('../images/teamScreen/player1.png'),
-                    tackles: 20,
+                    tackles: 18,
                     runMetres: 200,
                     lineBreaks: 1,
                     fantasyPoints: 49
@@ -746,7 +746,7 @@ export const mockBacksYears = [
                     type: 'FULLBACK',
                     image: require('../images/teamScreen/player.png'),
                     imageTeam: require('../images/teamScreen/player1.png'),
-                    tackles: 20,
+                    tackles: 16,
                     runMetres: 200,
                     lineBreaks: 1,
                     fantasyPoints: 49
@@ -910,10 +910,10 @@ export const mockBacksYears = [
               image: require('../images/commands/broncos.png'),
               color: '#800000',
               possessions:{
-                possession: '47 %',
+                possession: '47',
                 timeInPossession: 29.38,
                 completionRate:{
-                    degrees:'81 %',
+                    degrees:'75',
                     fraction:'27/39'
                 }
               },
@@ -921,7 +921,7 @@ export const mockBacksYears = [
                 allRuns: 187,
                 allRunMetres: 1771,
                 postContactMetres: 634,
-                averagePlayTheBallSpeed: '3.79s'
+                averagePlayTheBallSpeed: '4.5'
               },
               pasiing:{
                 offloads:5,
@@ -932,14 +932,14 @@ export const mockBacksYears = [
               kicking:{
                 kicks:21,
                 kickDefusal:{
-                    degrees:'81 %',
+                    degrees:'81',
                     fraction:'35/43'
 
                 },
                 kickingMetres:433,
               },
               defence:{
-                effectiveTackle:'81,12 %',
+                effectiveTackle:'68',
                 tacklesMade:322,
                 intercepts:2
 
@@ -1014,7 +1014,7 @@ export const mockBacksYears = [
                     type: 'FULLBACK',
                     image: require('../images/teamScreen/player.png'),
                     imageTeam: require('../images/teamScreen/player1.png'),
-                    tackles: 20,
+                    tackles: 22,
                     runMetres: 205,
                     lineBreaks: 4,
                     fantasyPoints: 79
@@ -1025,7 +1025,7 @@ export const mockBacksYears = [
                     type: 'FULLBACK',
                     image: require('../images/teamScreen/player.png'),
                     imageTeam: require('../images/teamScreen/player1.png'),
-                    tackles: 20,
+                    tackles: 29,
                     runMetres: 200,
                     lineBreaks: 1,
                     fantasyPoints: 49
@@ -1036,7 +1036,7 @@ export const mockBacksYears = [
                     type: 'FULLBACK',
                     image: require('../images/teamScreen/player.png'),
                     imageTeam: require('../images/teamScreen/player1.png'),
-                    tackles: 21,
+                    tackles: 18,
                     runMetres: 198,
                     lineBreaks: 3,
                     fantasyPoints: 73
@@ -1047,7 +1047,7 @@ export const mockBacksYears = [
                     type: 'FULLBACK',
                     image: require('../images/teamScreen/player.png'),
                     imageTeam: require('../images/teamScreen/player1.png'),
-                    tackles: 20,
+                    tackles: 17,
                     runMetres: 200,
                     lineBreaks: 1,
                     fantasyPoints: 49
@@ -1058,7 +1058,7 @@ export const mockBacksYears = [
                     type: 'FULLBACK',
                     image: require('../images/teamScreen/player.png'),
                     imageTeam: require('../images/teamScreen/player1.png'),
-                    tackles: 20,
+                    tackles: 16,
                     runMetres: 200,
                     lineBreaks: 1,
                     fantasyPoints: 49
@@ -1073,18 +1073,18 @@ export const mockBacksYears = [
               image: require('../images/commands/rabbitons.png'),
               color: '#03502F',
               possessions:{
-                possession: '53 %',
+                possession: '53',
                 timeInPossession: 26.52,
                 completionRate:{
-                    degrees:'69 %',
-                    fraction:'27/39'
+                    degrees:'45',
+                    fraction:'35/23'
                 }
               },
               attack: {
                 allRuns: 159,
                 allRunMetres: 1560,
                 postContactMetres: 521,
-                averagePlayTheBallSpeed: '3.79s'
+                averagePlayTheBallSpeed: '5.79'
               },
               pasiing:{
                 offloads:7,
@@ -1095,14 +1095,14 @@ export const mockBacksYears = [
               kicking:{
                 kicks:16,
                 kickDefusal:{
-                    degrees:'69 %',
+                    degrees:'59',
                     fraction:'27/39'
 
                 },
                 kickingMetres:432,
               },
               defence:{
-                effectiveTackle:'69,32 %',
+                effectiveTackle:'72',
                 tacklesMade:366,
                 intercepts:0
 
@@ -1315,18 +1315,18 @@ export const mockBacksYears = [
             color: '#191970',
             image: require('../images/commands/rooster.png'),
             possessions:{
-              possession: '47 %',
+              possession: '47',
               timeInPossession: 29.38,
               completionRate:{
-                  degrees:'81 %',
-                  fraction:'27/39'
+                  degrees:'56',
+                  fraction:'25/22'
               }
             },
             attack: {
               allRuns: 187,
               allRunMetres: 1771,
               postContactMetres: 634,
-              averagePlayTheBallSpeed: '3.79s'
+              averagePlayTheBallSpeed: '2.23'
             },
             pasiing:{
               offloads:5,
@@ -1337,14 +1337,14 @@ export const mockBacksYears = [
             kicking:{
               kicks:21,
               kickDefusal:{
-                  degrees:'81 %',
+                  degrees:'67',
                   fraction:'35/43'
 
               },
               kickingMetres:433,
             },
             defence:{
-              effectiveTackle:'81,12 %',
+              effectiveTackle:'52',
               tacklesMade:322,
               intercepts:2
 
@@ -1430,7 +1430,7 @@ export const mockBacksYears = [
                   type: 'FULLBACK',
                   image: require('../images/teamScreen/player.png'),
                   imageTeam: require('../images/teamScreen/player1.png'),
-                  tackles: 20,
+                  tackles: 16,
                   runMetres: 200,
                   lineBreaks: 1,
                   fantasyPoints: 49
@@ -1441,7 +1441,7 @@ export const mockBacksYears = [
                   type: 'FULLBACK',
                   image: require('../images/teamScreen/player.png'),
                   imageTeam: require('../images/teamScreen/player1.png'),
-                  tackles: 21,
+                  tackles: 18,
                   runMetres: 198,
                   lineBreaks: 3,
                   fantasyPoints: 73
@@ -1452,7 +1452,7 @@ export const mockBacksYears = [
                   type: 'FULLBACK',
                   image: require('../images/teamScreen/player.png'),
                   imageTeam: require('../images/teamScreen/player1.png'),
-                  tackles: 20,
+                  tackles: 24,
                   runMetres: 200,
                   lineBreaks: 1,
                   fantasyPoints: 49
@@ -1463,7 +1463,7 @@ export const mockBacksYears = [
                   type: 'FULLBACK',
                   image: require('../images/teamScreen/player.png'),
                   imageTeam: require('../images/teamScreen/player1.png'),
-                  tackles: 20,
+                  tackles: 23,
                   runMetres: 200,
                   lineBreaks: 1,
                   fantasyPoints: 49
@@ -1478,18 +1478,18 @@ export const mockBacksYears = [
               image: require('../images/commands/rabbitons.png'),
               color: '#03502F',
               possessions:{
-                possession: '53 %',
+                possession: '53',
                 timeInPossession: 26.52,
                 completionRate:{
-                    degrees:'69 %',
-                    fraction:'27/39'
+                    degrees:'95',
+                    fraction:'50/39'
                 }
               },
               attack: {
                 allRuns: 159,
                 allRunMetres: 1560,
                 postContactMetres: 521,
-                averagePlayTheBallSpeed: '3.79s'
+                averagePlayTheBallSpeed: '5.36'
               },
               pasiing:{
                 offloads:7,
@@ -1500,14 +1500,14 @@ export const mockBacksYears = [
               kicking:{
                 kicks:16,
                 kickDefusal:{
-                    degrees:'69 %',
-                    fraction:'27/39'
+                    degrees:'69',
+                    fraction:'28/39'
 
                 },
                 kickingMetres:432,
               },
               defence:{
-                effectiveTackle:'69,32 %',
+                effectiveTackle:'72',
                 tacklesMade:366,
                 intercepts:0
 
@@ -1736,18 +1736,18 @@ export const mockBacksYears = [
               pd: '-9',
               pts: '0',
               possessions:{
-                possession: 47,
+                possession: '47',
                 timeInPossession: 29.38,
                 completionRate:{
-                    degrees:'81 %',
-                    fraction:'27/39'
+                    degrees:'69',
+                    fraction:'26/35'
                 }
               },
               attack: {
                 allRuns: 20,
                 allRunMetres: 1771,
                 postContactMetres: 1571,
-                averagePlayTheBallSpeed: '3.79s'
+                averagePlayTheBallSpeed: '5.79'
               },
               pasiing:{
                 offloads:5,
@@ -1758,14 +1758,14 @@ export const mockBacksYears = [
               kicking:{
                 kicks:21,
                 kickDefusal:{
-                    degrees:'81 %',
+                    degrees:'85',
                     fraction:'27/39'
 
                 },
                 kickingMetres:433,
               },
               defence:{
-                effectiveTackle:'81,12 %',
+                effectiveTackle:'86',
                 tacklesMade:322,
                 intercepts:2
 
@@ -1840,7 +1840,7 @@ export const mockBacksYears = [
                     type: 'FULLBACK',
                     image: require('../images/teamScreen/player.png'),
                     imageTeam: require('../images/teamScreen/player1.png'),
-                    tackles: 20,
+                    tackles: 27,
                     runMetres: 205,
                     lineBreaks: 4,
                     fantasyPoints: 79
@@ -1851,7 +1851,7 @@ export const mockBacksYears = [
                     type: 'FULLBACK',
                     image: require('../images/teamScreen/player.png'),
                     imageTeam: require('../images/teamScreen/player1.png'),
-                    tackles: 20,
+                    tackles: 17,
                     runMetres: 200,
                     lineBreaks: 1,
                     fantasyPoints: 49
@@ -1873,7 +1873,7 @@ export const mockBacksYears = [
                     type: 'FULLBACK',
                     image: require('../images/teamScreen/player.png'),
                     imageTeam: require('../images/teamScreen/player1.png'),
-                    tackles: 20,
+                    tackles: 22,
                     runMetres: 200,
                     lineBreaks: 1,
                     fantasyPoints: 49
@@ -1884,7 +1884,7 @@ export const mockBacksYears = [
                     type: 'FULLBACK',
                     image: require('../images/teamScreen/player.png'),
                     imageTeam: require('../images/teamScreen/player1.png'),
-                    tackles: 20,
+                    tackles: 24,
                     runMetres: 200,
                     lineBreaks: 1,
                     fantasyPoints: 49
@@ -1906,18 +1906,18 @@ export const mockBacksYears = [
               pd: '12',
               pts: '2',
               possessions:{
-                possession: '53 %',
+                possession: '53',
                 timeInPossession: 26.52,
                 completionRate:{
-                    degrees:'69 %',
-                    fraction:'27/39'
+                    degrees:'75',
+                    fraction:'52/39'
                 }
               },
               attack: {
                 allRuns: 159,
                 allRunMetres: 1560,
                 postContactMetres: 521,
-                averagePlayTheBallSpeed: '3.79s'
+                averagePlayTheBallSpeed: '2.96'
               },
               pasiing:{
                 offloads:7,
@@ -1928,14 +1928,14 @@ export const mockBacksYears = [
               kicking:{
                 kicks:16,
                 kickDefusal:{
-                    degrees:'69 %',
+                    degrees:'69',
                     fraction:'27/39'
 
                 },
                 kickingMetres:432,
               },
               defence:{
-                effectiveTackle:'69,32 %',
+                effectiveTackle:'67',
                 tacklesMade:366,
                 intercepts:0
 
@@ -2153,18 +2153,18 @@ export const mockBacksYears = [
               pd: '5',
               pts: '2',
               possessions:{
-                possession: 47,
+                possession: '55',
                 timeInPossession: 29.38,
                 completionRate:{
-                    degrees:'81 %',
-                    fraction:'27/39'
+                    degrees:'56',
+                    fraction:'25/39'
                 }
               },
               attack: {
                 allRuns: 20,
                 allRunMetres: 1771,
                 postContactMetres: 1571,
-                averagePlayTheBallSpeed: '3.79s'
+                averagePlayTheBallSpeed: '4.25'
               },
               pasiing:{
                 offloads:5,
@@ -2175,14 +2175,14 @@ export const mockBacksYears = [
               kicking:{
                 kicks:21,
                 kickDefusal:{
-                    degrees:'81 %',
+                    degrees:'45',
                     fraction:'27/39'
 
                 },
                 kickingMetres:433,
               },
               defence:{
-                effectiveTackle:'81,12 %',
+                effectiveTackle:'75',
                 tacklesMade:322,
                 intercepts:2
 
@@ -2268,7 +2268,7 @@ export const mockBacksYears = [
                     type: 'FULLBACK',
                     image: require('../images/teamScreen/player.png'),
                     imageTeam: require('../images/teamScreen/player1.png'),
-                    tackles: 20,
+                    tackles: 26,
                     runMetres: 200,
                     lineBreaks: 1,
                     fantasyPoints: 49
@@ -2279,7 +2279,7 @@ export const mockBacksYears = [
                     type: 'FULLBACK',
                     image: require('../images/teamScreen/player.png'),
                     imageTeam: require('../images/teamScreen/player1.png'),
-                    tackles: 21,
+                    tackles: 27,
                     runMetres: 198,
                     lineBreaks: 3,
                     fantasyPoints: 73
@@ -2290,7 +2290,7 @@ export const mockBacksYears = [
                     type: 'FULLBACK',
                     image: require('../images/teamScreen/player.png'),
                     imageTeam: require('../images/teamScreen/player1.png'),
-                    tackles: 20,
+                    tackles: 17,
                     runMetres: 200,
                     lineBreaks: 1,
                     fantasyPoints: 49
@@ -2301,7 +2301,7 @@ export const mockBacksYears = [
                     type: 'FULLBACK',
                     image: require('../images/teamScreen/player.png'),
                     imageTeam: require('../images/teamScreen/player1.png'),
-                    tackles: 20,
+                    tackles: 19,
                     runMetres: 200,
                     lineBreaks: 1,
                     fantasyPoints: 49
@@ -2323,18 +2323,18 @@ export const mockBacksYears = [
               pd: '3',
               pts: '2',
               possessions:{
-                possession: '53 %',
+                possession: '53',
                 timeInPossession: 26.52,
                 completionRate:{
-                    degrees:'69 %',
-                    fraction:'27/39'
+                    degrees:'58',
+                    fraction:'23/39'
                 }
               },
               attack: {
                 allRuns: 159,
                 allRunMetres: 1560,
                 postContactMetres: 521,
-                averagePlayTheBallSpeed: '3.79s'
+                averagePlayTheBallSpeed: '3.79'
               },
               pasiing:{
                 offloads:7,
@@ -2345,14 +2345,14 @@ export const mockBacksYears = [
               kicking:{
                 kicks:16,
                 kickDefusal:{
-                    degrees:'69 %',
+                    degrees:'69',
                     fraction:'27/39'
 
                 },
                 kickingMetres:432,
               },
               defence:{
-                effectiveTackle:'69,32 %',
+                effectiveTackle:'75',
                 tacklesMade:366,
                 intercepts:0
 
@@ -2574,18 +2574,18 @@ export const mockBacksYears = [
               pd: '0',
               pts: '4',
               possessions:{
-                possession: 47,
+                possession: '47',
                 timeInPossession: 29.38,
                 completionRate:{
-                    degrees:'81 %',
-                    fraction:'27/39'
+                    degrees:'53',
+                    fraction:'24/39'
                 }
               },
               attack: {
                 allRuns: 20,
                 allRunMetres: 1771,
                 postContactMetres: 1571,
-                averagePlayTheBallSpeed: '3.79s'
+                averagePlayTheBallSpeed: '6.79'
               },
               pasiing:{
                 offloads:5,
@@ -2596,14 +2596,14 @@ export const mockBacksYears = [
               kicking:{
                 kicks:21,
                 kickDefusal:{
-                    degrees:'81 %',
-                    fraction:'27/39'
+                    degrees:'87',
+                    fraction:'45/39'
 
                 },
                 kickingMetres:433,
               },
               defence:{
-                effectiveTackle:'81,12 %',
+                effectiveTackle:'56',
                 tacklesMade:322,
                 intercepts:2
 
@@ -2678,7 +2678,7 @@ export const mockBacksYears = [
                     type: 'FULLBACK',
                     image: require('../images/teamScreen/player.png'),
                     imageTeam: require('../images/teamScreen/player1.png'),
-                    tackles: 20,
+                    tackles: 25,
                     runMetres: 205,
                     lineBreaks: 4,
                     fantasyPoints: 79
@@ -2689,7 +2689,7 @@ export const mockBacksYears = [
                     type: 'FULLBACK',
                     image: require('../images/teamScreen/player.png'),
                     imageTeam: require('../images/teamScreen/player1.png'),
-                    tackles: 20,
+                    tackles: 13,
                     runMetres: 200,
                     lineBreaks: 1,
                     fantasyPoints: 49
@@ -2700,7 +2700,7 @@ export const mockBacksYears = [
                     type: 'FULLBACK',
                     image: require('../images/teamScreen/player.png'),
                     imageTeam: require('../images/teamScreen/player1.png'),
-                    tackles: 21,
+                    tackles: 14,
                     runMetres: 198,
                     lineBreaks: 3,
                     fantasyPoints: 73
@@ -2711,7 +2711,7 @@ export const mockBacksYears = [
                     type: 'FULLBACK',
                     image: require('../images/teamScreen/player.png'),
                     imageTeam: require('../images/teamScreen/player1.png'),
-                    tackles: 20,
+                    tackles: 32,
                     runMetres: 200,
                     lineBreaks: 1,
                     fantasyPoints: 49
@@ -2722,7 +2722,7 @@ export const mockBacksYears = [
                     type: 'FULLBACK',
                     image: require('../images/teamScreen/player.png'),
                     imageTeam: require('../images/teamScreen/player1.png'),
-                    tackles: 20,
+                    tackles: 22,
                     runMetres: 200,
                     lineBreaks: 1,
                     fantasyPoints: 49
@@ -2744,18 +2744,18 @@ export const mockBacksYears = [
               pd: '1',
               pts: '2',
               possessions:{
-                possession: '53 %',
+                possession: '53 ',
                 timeInPossession: 26.52,
                 completionRate:{
-                    degrees:'69 %',
-                    fraction:'27/39'
+                    degrees:'65',
+                    fraction:'52/39'
                 }
               },
               attack: {
                 allRuns: 159,
                 allRunMetres: 1560,
                 postContactMetres: 521,
-                averagePlayTheBallSpeed: '3.79s'
+                averagePlayTheBallSpeed: '2.79'
               },
               pasiing:{
                 offloads:7,
@@ -2766,14 +2766,14 @@ export const mockBacksYears = [
               kicking:{
                 kicks:16,
                 kickDefusal:{
-                    degrees:'69 %',
-                    fraction:'27/39'
+                    degrees:'69',
+                    fraction:'25/39'
 
                 },
                 kickingMetres:432,
               },
               defence:{
-                effectiveTackle:'69,32 %',
+                effectiveTackle:'68',
                 tacklesMade:366,
                 intercepts:0
 
@@ -2999,18 +2999,18 @@ export const mockBacksYears = [
               pd: '1',
               pts: '2',
               possessions:{
-                possession: 47,
+                possession: '58',
                 timeInPossession: 29.38,
                 completionRate:{
-                    degrees:'81 %',
-                    fraction:'27/39'
+                    degrees:'78',
+                    fraction:'27/35'
                 }
               },
               attack: {
                 allRuns: 20,
                 allRunMetres: 1771,
                 postContactMetres: 1571,
-                averagePlayTheBallSpeed: '3.79s'
+                averagePlayTheBallSpeed: '4.79'
               },
               pasiing:{
                 offloads:5,
@@ -3021,14 +3021,14 @@ export const mockBacksYears = [
               kicking:{
                 kicks:21,
                 kickDefusal:{
-                    degrees:'81 %',
-                    fraction:'27/39'
+                    degrees:'67',
+                    fraction:'37/39'
 
                 },
                 kickingMetres:433,
               },
               defence:{
-                effectiveTackle:'81,12 %',
+                effectiveTackle:'75',
                 tacklesMade:322,
                 intercepts:2
 
@@ -3114,7 +3114,7 @@ export const mockBacksYears = [
                     type: 'FULLBACK',
                     image: require('../images/teamScreen/player.png'),
                     imageTeam: require('../images/teamScreen/player1.png'),
-                    tackles: 20,
+                    tackles: 23,
                     runMetres: 200,
                     lineBreaks: 1,
                     fantasyPoints: 49
@@ -3125,7 +3125,7 @@ export const mockBacksYears = [
                     type: 'FULLBACK',
                     image: require('../images/teamScreen/player.png'),
                     imageTeam: require('../images/teamScreen/player1.png'),
-                    tackles: 21,
+                    tackles: 29,
                     runMetres: 198,
                     lineBreaks: 3,
                     fantasyPoints: 73
@@ -3136,7 +3136,7 @@ export const mockBacksYears = [
                     type: 'FULLBACK',
                     image: require('../images/teamScreen/player.png'),
                     imageTeam: require('../images/teamScreen/player1.png'),
-                    tackles: 20,
+                    tackles: 19,
                     runMetres: 200,
                     lineBreaks: 1,
                     fantasyPoints: 49
@@ -3147,7 +3147,7 @@ export const mockBacksYears = [
                     type: 'FULLBACK',
                     image: require('../images/teamScreen/player.png'),
                     imageTeam: require('../images/teamScreen/player1.png'),
-                    tackles: 20,
+                    tackles: 13,
                     runMetres: 200,
                     lineBreaks: 1,
                     fantasyPoints: 49
@@ -3169,18 +3169,18 @@ export const mockBacksYears = [
               pd: '9',
               pts: '2',
               possessions:{
-                possession: '53 %',
+                possession: '63',
                 timeInPossession: 26.52,
                 completionRate:{
-                    degrees:'69 %',
-                    fraction:'27/39'
+                    degrees:'58',
+                    fraction:'25/39'
                 }
               },
               attack: {
                 allRuns: 159,
                 allRunMetres: 1560,
                 postContactMetres: 521,
-                averagePlayTheBallSpeed: '3.79s'
+                averagePlayTheBallSpeed: '2.85'
               },
               pasiing:{
                 offloads:7,
@@ -3191,14 +3191,14 @@ export const mockBacksYears = [
               kicking:{
                 kicks:16,
                 kickDefusal:{
-                    degrees:'69 %',
-                    fraction:'27/39'
+                    degrees:'67',
+                    fraction:'27/40'
 
                 },
                 kickingMetres:432,
               },
               defence:{
-                effectiveTackle:'69,32 %',
+                effectiveTackle:'58',
                 tacklesMade:366,
                 intercepts:0
 
@@ -3419,18 +3419,18 @@ export const mockBacksYears = [
               pd: '11',
               pts: '4',
               possessions:{
-                possession: 47,
+                possession: '77',
                 timeInPossession: 29.38,
                 completionRate:{
-                    degrees:'81 %',
-                    fraction:'27/39'
+                    degrees:'48',
+                    fraction:'17/39'
                 }
               },
               attack: {
                 allRuns: 20,
                 allRunMetres: 1771,
                 postContactMetres: 1571,
-                averagePlayTheBallSpeed: '3.79s'
+                averagePlayTheBallSpeed: '3.58'
               },
               pasiing:{
                 offloads:5,
@@ -3441,14 +3441,14 @@ export const mockBacksYears = [
               kicking:{
                 kicks:21,
                 kickDefusal:{
-                    degrees:'81 %',
+                    degrees:'58',
                     fraction:'27/39'
 
                 },
                 kickingMetres:433,
               },
               defence:{
-                effectiveTackle:'81,12 %',
+                effectiveTackle:'79',
                 tacklesMade:322,
                 intercepts:2
 
@@ -3523,7 +3523,7 @@ export const mockBacksYears = [
                     type: 'FULLBACK',
                     image: require('../images/teamScreen/player.png'),
                     imageTeam: require('../images/teamScreen/player1.png'),
-                    tackles: 20,
+                    tackles: 14,
                     runMetres: 205,
                     lineBreaks: 4,
                     fantasyPoints: 79
@@ -3534,7 +3534,7 @@ export const mockBacksYears = [
                     type: 'FULLBACK',
                     image: require('../images/teamScreen/player.png'),
                     imageTeam: require('../images/teamScreen/player1.png'),
-                    tackles: 20,
+                    tackles: 18,
                     runMetres: 200,
                     lineBreaks: 1,
                     fantasyPoints: 49
@@ -3545,7 +3545,7 @@ export const mockBacksYears = [
                     type: 'FULLBACK',
                     image: require('../images/teamScreen/player.png'),
                     imageTeam: require('../images/teamScreen/player1.png'),
-                    tackles: 21,
+                    tackles: 26,
                     runMetres: 198,
                     lineBreaks: 3,
                     fantasyPoints: 73
@@ -3556,7 +3556,7 @@ export const mockBacksYears = [
                     type: 'FULLBACK',
                     image: require('../images/teamScreen/player.png'),
                     imageTeam: require('../images/teamScreen/player1.png'),
-                    tackles: 20,
+                    tackles: 15,
                     runMetres: 200,
                     lineBreaks: 1,
                     fantasyPoints: 49
@@ -3567,7 +3567,7 @@ export const mockBacksYears = [
                     type: 'FULLBACK',
                     image: require('../images/teamScreen/player.png'),
                     imageTeam: require('../images/teamScreen/player1.png'),
-                    tackles: 20,
+                    tackles: 11,
                     runMetres: 200,
                     lineBreaks: 1,
                     fantasyPoints: 49
@@ -3589,18 +3589,18 @@ export const mockBacksYears = [
               pd: '12',
               pts: '2',
               possessions:{
-                possession: '53 %',
+                possession: '51',
                 timeInPossession: 26.52,
                 completionRate:{
-                    degrees:'69 %',
-                    fraction:'27/39'
+                    degrees:'79',
+                    fraction:'45/39'
                 }
               },
               attack: {
                 allRuns: 159,
                 allRunMetres: 1560,
                 postContactMetres: 521,
-                averagePlayTheBallSpeed: '3.79s'
+                averagePlayTheBallSpeed: '3.57'
               },
               pasiing:{
                 offloads:7,
@@ -3611,14 +3611,14 @@ export const mockBacksYears = [
               kicking:{
                 kicks:16,
                 kickDefusal:{
-                    degrees:'69 %',
-                    fraction:'27/39'
+                    degrees:'95',
+                    fraction:'44/39'
 
                 },
                 kickingMetres:432,
               },
               defence:{
-                effectiveTackle:'69,32 %',
+                effectiveTackle:'71',
                 tacklesMade:366,
                 intercepts:0
 
@@ -3838,18 +3838,18 @@ export const mockBacksYears = [
               pd: '4',
               pts: '2',
               possessions:{
-                possession: '53 %',
+                possession: '69',
                 timeInPossession: 26.52,
                 completionRate:{
-                    degrees:'69 %',
-                    fraction:'27/39'
+                    degrees:'73',
+                    fraction:'35/39'
                 }
               },
               attack: {
                 allRuns: 159,
                 allRunMetres: 1560,
                 postContactMetres: 521,
-                averagePlayTheBallSpeed: '3.79s'
+                averagePlayTheBallSpeed: '4.15s'
               },
               pasiing:{
                 offloads:7,
@@ -3860,14 +3860,14 @@ export const mockBacksYears = [
               kicking:{
                 kicks:16,
                 kickDefusal:{
-                    degrees:'69 %',
-                    fraction:'27/39'
+                    degrees:'65',
+                    fraction:'37/39'
 
                 },
                 kickingMetres:432,
               },
               defence:{
-                effectiveTackle:'69,32 %',
+                effectiveTackle:'74',
                 tacklesMade:366,
                 intercepts:0
 
@@ -4011,15 +4011,15 @@ export const mockBacksYears = [
                 possession: 47,
                 timeInPossession: 29.38,
                 completionRate:{
-                    degrees:'81 %',
-                    fraction:'27/39'
+                    degrees:'69',
+                    fraction:'35/39'
                 }
               },
               attack: {
                 allRuns: 20,
                 allRunMetres: 1771,
                 postContactMetres: 1571,
-                averagePlayTheBallSpeed: '3.79s'
+                averagePlayTheBallSpeed: '4.36'
               },
               pasiing:{
                 offloads:5,
@@ -4030,14 +4030,14 @@ export const mockBacksYears = [
               kicking:{
                 kicks:21,
                 kickDefusal:{
-                    degrees:'81 %',
-                    fraction:'27/39'
+                    degrees:'84',
+                    fraction:'43/39'
 
                 },
                 kickingMetres:433,
               },
               defence:{
-                effectiveTackle:'81,12 %',
+                effectiveTackle:'85',
                 tacklesMade:322,
                 intercepts:2
 
@@ -4112,7 +4112,7 @@ export const mockBacksYears = [
                     type: 'FULLBACK',
                     image: require('../images/teamScreen/player.png'),
                     imageTeam: require('../images/teamScreen/player4.png'),
-                    tackles: 20,
+                    tackles: 26,
                     runMetres: 205,
                     lineBreaks: 4,
                     fantasyPoints: 79
@@ -4123,7 +4123,7 @@ export const mockBacksYears = [
                     type: 'FULLBACK',
                     image: require('../images/teamScreen/player.png'),
                     imageTeam: require('../images/teamScreen/player4.png'),
-                    tackles: 20,
+                    tackles: 22,
                     runMetres: 200,
                     lineBreaks: 1,
                     fantasyPoints: 49
@@ -4134,7 +4134,7 @@ export const mockBacksYears = [
                     type: 'FULLBACK',
                     image: require('../images/teamScreen/player.png'),
                     imageTeam: require('../images/teamScreen/player4.png'),
-                    tackles: 21,
+                    tackles: 15,
                     runMetres: 198,
                     lineBreaks: 3,
                     fantasyPoints: 73
@@ -4145,7 +4145,7 @@ export const mockBacksYears = [
                     type: 'FULLBACK',
                     image: require('../images/teamScreen/player.png'),
                     imageTeam: require('../images/teamScreen/player4.png'),
-                    tackles: 20,
+                    tackles: 17,
                     runMetres: 200,
                     lineBreaks: 1,
                     fantasyPoints: 49
@@ -4156,7 +4156,7 @@ export const mockBacksYears = [
                     type: 'FULLBACK',
                     image: require('../images/teamScreen/player.png'),
                     imageTeam: require('../images/teamScreen/player4.png'),
-                    tackles: 20,
+                    tackles: 18,
                     runMetres: 200,
                     lineBreaks: 1,
                     fantasyPoints: 49

@@ -16,6 +16,8 @@ import MatchScreen from '../screens/home/screens/draw&Ladder/MatchScreen';
 import ArticleScreen from '../screens/home/screens/ArticleScreen';
 import DetailsStatsScreen from '../screens/home/screens/draw&Ladder/DetailsStatsScreen';
 import TeamListScreen from '../screens/home/screens/draw&Ladder/TeamListScreen';
+import PayerStatsScreen from '../screens/home/screens/draw&Ladder/PlayerStatsScreen';
+import TeamStatsScreen from '../screens/home/screens/draw&Ladder/TeamStatsScreen';
 import {colors} from '../components/Colors'
 
 
@@ -98,6 +100,14 @@ const DrawLadderStack =()=>{
 
       <DrawLadderStack.Screen 
         name="Team List" component={TeamListScreen} 
+        
+      />
+       <DrawLadderStack.Screen 
+        name="Team Stats" component={TeamStatsScreen} 
+        
+      />
+      <DrawLadderStack.Screen 
+        name="Player Stats" component={PayerStatsScreen} 
         
       />
 

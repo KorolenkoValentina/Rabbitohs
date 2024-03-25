@@ -15,16 +15,28 @@ import { useNavigation } from '@react-navigation/native';
 import {colors} from '../../../../components/Colors';
 
 
-export default function  LogInScreen (){
+
+export default function  ForrgotPasswordScreen (){
     const [email, setEmail] = useState('');
     const navigation = useNavigation();
 
    
     
-    const handleSend = () => {
-        
-        console.log('Email:', email);
-
+    const handleSendCode = async () => {
+        try {
+          const response = await fetch('http://localhost:3001/send-code', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email }),
+          });
+          const data = await response.json();
+          Alert.alert('Success', data.message);
+        } catch (error) {
+          console.error('Error sending verification code:', error);
+          Alert.alert('Error', 'Failed to send verification code. Please try again later.');
+        }
     };
     
     const navigateToLogIn = () => {
@@ -53,20 +65,20 @@ export default function  LogInScreen (){
                     />
                 </View>
 
-                
-                <TouchableOpacity style={styles.wrapButton} onPress={handleSend} >
+            </View>  
+            <TouchableOpacity style={styles.wrapButton} onPress={handleSendCode} >
               
-                    <Text style={styles.titleButton}>SEND </Text> 
+                <Text style={styles.titleButton}>SEND </Text> 
+            </TouchableOpacity>
+            
+            <View style={styles.wrapTitle}>
+                <Text style={styles.subtitle}>I remember my password</Text>
+                <TouchableOpacity>
+                    <Text style={[styles.title, { textDecorationLine: 'underline' }]} onPress={navigateToLogIn }> Login</Text>
                 </TouchableOpacity>
-            
-                <View style={styles.wrapTitle}>
-                    <Text style={styles.subtitle}>I remember my password</Text>
-                    <TouchableOpacity>
-                        <Text style={[styles.title, { textDecorationLine: 'underline' }]} onPress={navigateToLogIn }> Login</Text>
-                    </TouchableOpacity>
-                </View>
-            
             </View>
+            
+            
         </SafeAreaView>
     );
 }
@@ -74,11 +86,15 @@ export default function  LogInScreen (){
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1, 
-      justifyContent: 'center',
-      alignItems: 'center',
-      padding: 16,
-      
+        flex: 1, 
+        justifyContent: 'center',
+        marginHorizontal:25
+        
+    },
+  
+    wrap:{
+        alignItems: 'center',
+  
     },
     
     logo:{
@@ -94,32 +110,34 @@ const styles = StyleSheet.create({
     },
     subtitle:{
         fontSize: 14,
-        color:colors.extraDarkGrey
+        color:colors.extraDarkGrey,
+        textAlign:'center',
+
 
     },
 
     input: {
         height: 55,
         borderColor: colors.darkGrey,
-        borderWidth: 1,
-        marginBottom: 24,
+        borderBottomWidth:1,
         paddingLeft: 8,
-        paddingRight: 16,
         width: 327,
-        color:colors.extraDarkGrey
+        color:colors.extraDarkGrey,
+        marginVertical:30
     },
     
 
     wrapTitle:{
         flexDirection:'row',
+        justifyContent:'center',
+        marginTop:50
     
     },
 
     wrapButton:{
         backgroundColor: colors.green,
         borderRadius: 5,
-        paddingVertical: 10,
-        paddingHorizontal: 18,
+        paddingVertical: 10,     
         
     },
 

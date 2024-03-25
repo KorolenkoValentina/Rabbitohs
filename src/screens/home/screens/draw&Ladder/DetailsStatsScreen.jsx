@@ -13,22 +13,14 @@ import {
 import { colors } from '../../../../components/Colors';
 import { useNavigation } from '@react-navigation/native';
 import Switcher from '../../components/Switcher';
-import ErrorIcon from '../../../../components/icons/ErrorIcon';
-import RegbyBallIcon from '../../../../components/icons/RegbyBall';
-import GoalMadeIcon from '../../../../components/icons/GoalMadeIcon';
-import RestartIcon from '../../../../components/icons/RestartIcon';
-import MetresIcon from '../../../../components/icons/MetresIcon';
-import LinesIcon from '../../../../components/icons/LinesIcon';
-import ArrowIcon from '../../../../components/icons/ArrowIcon';
-import WhistleIcon from '../../../../components/icons/WhistleIcon';
 
+import {ErrorIcon, RegbyBallIcon, GoalMadeIcon, RestartIcon, MetresIcon, LinesIcon, ArrowIcon, WhistleIcon } from '../../../../components/icons/DetailsStatsScreenIcons'
 
 
 const DetailsStatsScreen = ({ route }) => {
   const navigation = useNavigation();
   const [activeSection, setActiveSection] = useState('Play by play');
   const { roundData } = route.params;
-  console.log('give me:',roundData)
   const { teams } = roundData;
   const team1 = teams[0];
   const team2 = teams[1];
@@ -241,12 +233,12 @@ const DetailsStatsScreen = ({ route }) => {
             case 'Team List':
               navigation.navigate('Team List',{roundData});
             break;
-            // case 'Team Stats':
-            //   navigation.navigate('TeamStatsScreen', { mockBacksYears});
-            // break;
-            // case 'Player Stats':
-            //   navigation.navigate('PlayerStatsScreen', { mockBacksYears});
-            // break;
+            case 'Team Stats':
+              navigation.navigate('Team Stats', {roundData});
+            break;
+            case 'Player Stats':
+              navigation.navigate('Player Stats', {roundData});
+            break;
       
             default:
         

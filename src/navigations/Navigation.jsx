@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import 'react-native-gesture-handler';
 import {
   StyleSheet,
@@ -14,13 +14,15 @@ import HomeStack from './HomeStack';
 import MomentsScreen from '../screens/home/screens/MomentsScreen';
 import DrawLadderStack from './DrawLadderStack';
 import TeamStack from './TeamStack'
-import AccountScreen from '../screens/home/screens/AccountScreen';
+import AccountStack from './AccountStack';
+import SignUpScreen from '../screens/home/screens/registration/CreateAccountScreen';
+import LogInScreen from '../screens/home/screens/registration/LogInScreens';
+import ForrgotPasswordScreen from '../screens/home/screens/registration/ForrgotPasswordScreen';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import NewsIcon from "../components/icons/NewsIcon";
-import MomentsIcon from "../components/icons/MomentsIcon";
-import DrawLadderIcon from "../components/icons/DrawLadderIcon";
-import TeamIcon from "../components/icons/TeamIcon";
-import AccountIcon from "../components/icons/AccountIcon";
+
+import {NewsIcon, MomentsIcon, DrawLadderIcon, TeamIcon, AccountIcon } from '../components/icons/NavigationScreenIcons'
+
 
 const Stack = createNativeStackNavigator();
 
@@ -69,7 +71,7 @@ const MyTabs =()=> {
         
         tabBarIcon:AccountIcon,
       }}
-       name="Account" component={AccountScreen} />
+       name="Account" component={AccountStack} />
 
 
 
@@ -89,17 +91,37 @@ const  MyStack=()=> {
       <Stack.Screen name="Moment" component={MomentsScreen} />
       <Stack.Screen name="Draw & Ladder" component={DrawLadderStack} />
       <Stack.Screen name="Teams" component={TeamStack} />
-      <Stack.Screen name="Account" component={AccountScreen} />
+      <Stack.Screen name="Account" component={AccountStack} />
     </Stack.Navigator>
   
   );
 };
 
 export default function Navigator() {
+ 
+
+  useEffect(() => {
+    checkAuthStatus();
+  }, []);
+
+  const checkAuthStatus = async () => {
+    const isLoggedIn = await AsyncStorage.getItem('isLoggedIn');
+    const initialRouteName = isLoggedIn ? 'Login' : 'Sign Up';
+    // Змінюємо стартову сторінку в залежності від статусу ввійти/зареєструватися
+    navigation.replace(initialRouteName);
+  };
 
   return (
     <NavigationContainer>
-      <MyStack/>
+      <Stack.Navigator initialRouteName="Sign Up"
+      screenOptions={{
+        headerShown: false,
+      }}>
+        <Stack.Screen name="Sign Up" component={SignUpScreen} />
+        <Stack.Screen name="Login" component={LogInScreen} />
+        <Stack.Screen name="Forgot password" component={ForrgotPasswordScreen} />
+        <Stack.Screen name="MainTabs" component={MyStack} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }

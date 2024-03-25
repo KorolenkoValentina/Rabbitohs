@@ -7,7 +7,8 @@ export const colors = {
     extralightGrey:'#F9F9F9',
     white:'white' ,
     red: '#EC0400',
-    green:'#03502F'
+    green:'#03502F',
+    bgCircle:'#ecf0f1'
 
 };
 

@@ -14,10 +14,11 @@ import {
 
 import {colors} from '../../../../components/Colors';
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function  SignUpScreen (){
   const [firstName, setFirstName] = useState('');
-  const [LastName, setLasttName] = useState('');
+  const [lastName, setLasttName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -26,9 +27,12 @@ export default function  SignUpScreen (){
 
   const navigation = useNavigation();
 
-  const handleSignUp = () => {
-    // Додайте вашу логіку реєстрації тут
-    console.log('Signing up...');
+  const handleSignUp = async () => {
+    const userData = { firstName, lastName, email };
+    navigation.navigate('Profile', { userData });
+    
+    await AsyncStorage.setItem('isLoggedIn', 'true');
+    navigation.replace('Login');
   };
 
   const handlePasswordChange = (text) => {
@@ -52,18 +56,25 @@ export default function  SignUpScreen (){
             <Text style={styles.titleHeader}> Create an account </Text>
             <View style={styles.wrapFullNane}>
                 <TextInput
-                style={styles.input}
+                style={[styles.input,{width:155, marginRight:15}]}
                 onChangeText={setFirstName}
                 value={firstName}
                 placeholder="First Name"
                 />
                 <TextInput
-                style={styles.input}
+                style={[styles.input,{width:155}]}
                 onChangeText={setLasttName}
-                value={LastName}
-                placeholder="First Name"
+                value={lastName}
+                placeholder="Last Name"
                 />
             </View>
+            <TextInput
+                    style={styles.input}
+                    placeholder="Email"
+                    onChangeText={(text) => setEmail(text)}
+                    value={email}
+                    keyboardType="email-address"
+                    />
 
             <View style={styles.passwordInput}>
                 <TextInput
@@ -95,7 +106,7 @@ export default function  SignUpScreen (){
                     />
                 </TouchableOpacity>
             </View>
-
+            </View>
             <TouchableOpacity style={styles.wrapButton} onPress={handleSignUp} >
                 <Text style={styles.titleButton}>SUBMIT</Text> 
             </TouchableOpacity>
@@ -106,7 +117,7 @@ export default function  SignUpScreen (){
                 </TouchableOpacity>
             </View>
              
-        </View>
+        
     </SafeAreaView>
   );
 }
@@ -116,9 +127,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1, 
     justifyContent: 'center',
-    alignItems: 'center',
-    padding: 16,
+    marginHorizontal:25
+    
       
+  },
+  wrap:{
+    alignItems: 'center',
+
   },
 
   logo:{
@@ -142,21 +157,20 @@ const styles = StyleSheet.create({
   input: {
     height: 55,
     borderColor: colors.darkGrey,
-    borderWidth: 1,
+    borderBottomWidth:1,
     marginBottom: 24,
     paddingLeft: 8,
-    paddingRight: 16,
     width: 327,
     color:colors.extraDarkGrey
    },
     passwordInput: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 14,
    },
 
    wrapTitle:{
     flexDirection:'row',
+    justifyContent:'center',
 
   },
 
@@ -164,7 +178,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.green,
     borderRadius: 5,
     paddingVertical: 10,
-    paddingHorizontal: 18,
+    marginBottom:30
     
   },
 

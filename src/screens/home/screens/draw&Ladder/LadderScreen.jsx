@@ -16,6 +16,8 @@ import RoundModal from '../../components/RoundModal';
 import { colors } from '../../../../components/Colors';
 import { useNavigation } from '@react-navigation/native';
 
+// import ArrowRightIcon from '../../../../components/icons/AccountScreenIcons'
+
 
 const LadderScreen = ({ route}) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -164,7 +166,7 @@ const LadderScreen = ({ route}) => {
             </TouchableOpacity>
             <Image source={require('../../images/teamScreen/line.png')} />
             <TouchableOpacity onPress={selectNextRound}>
-              <Image source={require('../../images/accountScreen/arrowRight.png')} />
+             <Image source={require('../../images/accountScreen/arrowRight.png')} />
             </TouchableOpacity>
           </View>
           <RoundModal
