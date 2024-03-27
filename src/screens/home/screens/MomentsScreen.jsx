@@ -1,17 +1,36 @@
-import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
+import React,{useState}   from 'react';
+import { View, FlatList, Image, TouchableOpacity, Modal, StyleSheet, Text } from 'react-native';
+import { mockMomentsData } from '../components/MockMomentsData';
+import { colors } from '../../../components/Colors';
+
+const MomentsScreen = ({ navigation }) => {
   
-} from 'react-native';
 
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [modalVisible, setModalVisible] = useState(false);
 
-const MomentsScreen = () => {
- 
+  const renderItem = ({ item }) => (
+    <TouchableOpacity onPress={() => { setSelectedImage(item.image); setModalVisible(true); }}>
+        <Image source={item.image} style={styles.imageThumbnail} />
+    </TouchableOpacity>
+);
+
   return (
     <View style={styles.container}>
-          <Text style={styles.title}> Hello</Text>      
+      <FlatList
+        data={mockMomentsData}
+        numColumns={3}
+        renderItem={renderItem}
+        keyExtractor={(item, index) => index.toString()}
+      />
+      <Modal visible={modalVisible} transparent={true}>
+        <View style={styles.modalContainer}>
+          <TouchableOpacity style={styles.closeButton} onPress={() => setModalVisible(false)}>
+            <Text style={styles.closeText}>Close</Text>
+          </TouchableOpacity>
+          <Image source={selectedImage} style={styles.fullImage} resizeMode="contain" />
+        </View>
+      </Modal>
     </View>
   );
 };
@@ -19,17 +38,36 @@ const MomentsScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1, 
-  }, 
-
-  title: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    textAlign: 'center',
+    marginHorizontal:15,
+    backgroundColor:colors.lightgrey2,
     
+      
   },
+  imageThumbnail: {
+    width: 108,
+    height: 108,
+    margin: 5,
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+  },
+  closeButton: {
+    position: 'absolute',
+    top: 20,
+    right: 20,
+    zIndex: 1,
+  },
+  closeText: {
+    color: 'white',
+    fontSize: 18,
+  },
+  fullImage: {
+    width: '90%',
+    height: '90%',
+  },
+});
 
-  
-})
-
-   
-export default MomentsScreen ;
+export default MomentsScreen;

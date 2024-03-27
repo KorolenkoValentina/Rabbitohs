@@ -1,20 +1,47 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
   StyleSheet,
   TouchableOpacity,
   Modal,
-  SafeAreaView
+  SafeAreaView,
+  Image,
+  ScrollView
   
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { colors } from '../../../../components/Colors';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {ArrowRightIcon,SupportIcon, PasswordIcon, NotificationsIcon, RegistrationsIcon,BenefitsIcon ,PurchasesIcon ,ProfileIcon } from '../../../../components/icons/AccountScreenIcons'
 
 const AccountScreen = () => {
   const [showModal, setShowModal] = useState(false);
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [image, setImage] = useState(null);
+
+  useEffect(() => {
+    getUserData();
+  }, []);
+
+  const getUserData = async () => {
+    try {
+      const userData = await AsyncStorage.getItem('userData');
+      if (userData) {
+        const parsedUserData = JSON.parse(userData);
+        setFirstName(parsedUserData.firstName || '');
+        setLastName(parsedUserData.lastName|| '');
+        setEmail(parsedUserData.email || '');
+        setImage(parsedUserData.image || null);
+      }
+    } catch (error) {
+      console.error('Error retrieving user data:', error);
+    }
+  };
+
 
 
   const navigation = useNavigation();
@@ -88,8 +115,22 @@ const AccountScreen = () => {
      
 
   return (
-     
+    <ScrollView>
     <View style={styles.container}>
+      
+      <TouchableOpacity style={styles.avatarContainer}>
+          {image ? (
+            <Image source={{ uri: image }} style={styles.avatar} />
+          ) : (
+            <View style={styles.defaultAvatar}>
+              <Text style={styles.plus}>+</Text>
+            </View>
+          )}
+        </TouchableOpacity>
+        <Text style={styles.name}>{firstName}{lastName}</Text>
+        <Text style={styles.email}>{email}</Text>
+
+
       
       <ListItem 
         IconCard={ProfileIcon}
@@ -136,8 +177,9 @@ const AccountScreen = () => {
       />
       <LogoutButton onPress={onPressLogout}/>
       {showModal && <LogoutModal onClose={() => setShowModal(false)} />}
+      
     </View>
-    
+    </ScrollView>
   );
 };
 
@@ -158,7 +200,7 @@ const styles = StyleSheet.create({
   wrap:{
     justifyContent: 'center',
     alignItems: 'center',
-    marginHorizontal:25
+    marginHorizontal:25,
     
   },
   container: {
@@ -187,7 +229,7 @@ const styles = StyleSheet.create({
     color:colors.red,
     textDecorationLine:'underline',
     fontSize: 14,
-    marginTop:30
+    marginVertical:30
   },
   modalOverlay: {
     flex: 1,
@@ -228,7 +270,44 @@ const styles = StyleSheet.create({
     marginTop:15,
     marginBottom:30
    
-  }
+  },
+  name: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color:colors.black,
+  },
+
+  email: {
+    fontSize: 14,
+    color: colors.extraDarkGrey, 
+    marginVertical: 15,
+  },
+  avatarContainer: {
+    width: 100,
+    height: 100,
+    borderRadius: 75,
+    backgroundColor: colors.lightgrey,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginVertical:25
+  },
+  avatar: {
+    width: 100,
+    height: 100,
+    borderRadius: 75,
+  },
+  defaultAvatar: {
+    width: 100,
+    height: 100,
+    borderRadius: 75,
+    backgroundColor: colors.lightgrey,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  plus: {
+    fontSize: 50,
+    color: colors.darkGrey,
+  },
 });
 
    

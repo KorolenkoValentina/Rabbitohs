@@ -8,15 +8,17 @@ import {
   TextInput,
   TouchableOpacity,
   ScrollView,
+  Image
   
 } from 'react-native';
 
 import {colors} from '../../../../components/Colors';
+
 import { CalendarIcon, ArrowRightIcon } from '../../../../components/icons/AccountScreenIcons';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import ImagePicker from 'react-native-image-picker';
-import { launchImageLibrary } from 'react-native-image-picker';
+import * as ImagePicker from 'expo-image-picker';
 import { FacebookIcon,TikTokIcon,TwitterIcon,InstagramIcon } from '../../../../components/icons/SocialIcon';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 
@@ -34,37 +36,51 @@ export default function  ProfileScreen ({ navigation, route }){
     const [twitter, setTwitter] = useState('');
     const [instagram, setInstagram] = useState('');
     const [tikTok, setTikTok] = useState('');
-    const [avatar, setAvatar] = useState(null);
+    const [image, setImage]= useState(null)
 
 
-    useEffect(() => {
-        // Перевірте, чи є дані користувача в параметрах маршруту
-        if (route.params?.userData) {
-          const { firstName, lastName, email } = route.params.userData;
-          setFirstName(firstName);
-          setLastName(lastName);
-          setEmail(email);
-        }
-      }, [route.params?.userData]);
+    const getUserData = async () => {
+        try {
+          const storedUserData = await AsyncStorage.getItem('userData');
+          if (storedUserData) {
+            const parsedUserData = JSON.parse(storedUserData);
+            setFirstName(parsedUserData.firstName || '');
+            setLastName(parsedUserData.lastName || '');
+            setEmail(parsedUserData.email || '');
+            setBirthdate(new Date(parsedUserData.birthdate) || new Date());
+            setGender(parsedUserData.gender || '');
+            onChangeNumber(parsedUserData.number || '');
+            setFacebook(parsedUserData.facebook || '')
+            setInstagram(parsedUserData.instagram || '')
+            setTikTok(parsedUserData.tikTok || '')
+            setTwitter(parsedUserData.twitter || '')
+            setImage(parsedUserData.image || '')
 
-    const selectImage = () => {
-        const options = {
-          mediaType: 'photo', // Тип медіа - фотографія
-        };
-    
-        launchImageLibrary(options, (response) => {
-          if (response.didCancel) {
-            console.log('User cancelled image picker');
-          } else if (response.error) {
-            console.log('ImagePicker Error:', response.error);
-          } else {
-            const source = { uri: response.uri };
-            setAvatar(source);
           }
-        });
+        } catch (error) {
+          console.error('Error retrieving data:', error);
+        }
       };
+    
+      useEffect(() => {
+        getUserData(); 
+    }, []);
+    
 
-
+    const selectImage = async () => {
+        let result = await ImagePicker.launchImageLibraryAsync({
+          mediaTypes: ImagePicker.MediaTypeOptions.Images,
+          allowsEditing: true,
+          aspect: [4, 3],
+          quality: 1,
+          
+        });
+        console.log(result);
+        if (!result.canceled) {
+            setImage(result.assets[0].uri);
+        }
+    };
+  
 
     const formatDate = (date) => {
         const day = date.getDate();
@@ -83,6 +99,7 @@ export default function  ProfileScreen ({ navigation, route }){
     const openGenderSelection = () => {
         navigation.navigate('Choose gender', { selectedGender: gender });
     };
+
     useEffect(() => {
         if (route.params?.selectedGender) {
           setGender(route.params.selectedGender);
@@ -92,29 +109,40 @@ export default function  ProfileScreen ({ navigation, route }){
 
     const handleSaveChanges = async () => {
         try {
-          const userData = { firstName, lastName, email, birthdate, gender, number, facebook, twitter, instagram, tikTok };
+          const userData = { firstName, lastName, email, birthdate, gender, number, facebook, twitter, instagram, tikTok, image };
           await AsyncStorage.setItem('userData', JSON.stringify(userData));
-          navigation.replace('Account');
+          navigation.goBack(); 
         } catch (error) {
           console.error('Error saving data:', error);
         }
-      };
+    };
 
-   
-
+    const openSocialMediaLink = (socialMedia, link) => {
+        if (link.trim() !== '') {
+          const url = `https://www.${socialMedia}.com/${link.trim()}`;
+          Linking.openURL(url);
+        } else {
+          console.log(`${socialMedia} URL is empty`);
+        }
+    };
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView>
-            <View style={styles.wrap}>  
+            <View style={styles.wrap}> 
+
                 <TouchableOpacity style={styles.avatarContainer} onPress={selectImage}>
-                    {avatar ? (
-                    <Image source={avatar} style={styles.avatar} />
+                  
+                {image ? (
+                    <Image source={{ uri: image }} style={styles.avatar} />
                     ) : (
                     <View style={styles.defaultAvatar}>
                         <Text style={styles.plus}>+</Text>
                     </View>
                     )}
+                   
                 </TouchableOpacity>
+
+
                 <View style={styles.inputContainer}>
                     <TextInput
                     style={[styles.input,{width:139, marginRight:15}]}
@@ -186,7 +214,7 @@ export default function  ProfileScreen ({ navigation, route }){
             </View>
             <View style={styles.wrap}>
                 <View style={styles.socialContainer}>
-                    <TouchableOpacity style={styles.socialIcon} onPress={() => {/* Додайте логіку для відкриття вікна введення посилання Facebook */}}>
+                    <TouchableOpacity style={styles.socialIcon} onPress={() => openSocialMediaLink('facebook', facebook)}>
                         <FacebookIcon/>
                     </TouchableOpacity>
                     <TextInput
@@ -199,7 +227,7 @@ export default function  ProfileScreen ({ navigation, route }){
                 </View>
 
                 <View style={styles.socialContainer}>
-                    <TouchableOpacity style={styles.socialIcon} onPress={() => {/* Додайте логіку для відкриття вікна введення посилання Facebook */}}>
+                    <TouchableOpacity style={styles.socialIcon}  onPress={() => openSocialMediaLink('instagram', instagram)}>
                         <InstagramIcon/>
                     </TouchableOpacity>
                     <TextInput
@@ -211,7 +239,7 @@ export default function  ProfileScreen ({ navigation, route }){
 
                 </View>
                 <View style={styles.socialContainer}>
-                    <TouchableOpacity style={styles.socialIcon} onPress={() => {/* Додайте логіку для відкриття вікна введення посилання Facebook */}}>
+                    <TouchableOpacity style={styles.socialIcon}  onPress={() => openSocialMediaLink('tiktok', tikTok)}>
                         <TikTokIcon/>
                     </TouchableOpacity>
                     <TextInput
@@ -223,7 +251,7 @@ export default function  ProfileScreen ({ navigation, route }){
 
                 </View>
                 <View style={styles.socialContainer}>
-                    <TouchableOpacity style={styles.socialIcon} onPress={() => {/* Додайте логіку для відкриття вікна введення посилання Facebook */}}>
+                    <TouchableOpacity style={styles.socialIcon} onPress={() => openSocialMediaLink('twitter', twitter)}>
                         <TwitterIcon/>
                     </TouchableOpacity>
                     <TextInput
@@ -307,33 +335,31 @@ const styles = StyleSheet.create({
                  
     },
 
-
-
     avatarContainer: {
         width: 100,
         height: 100,
         borderRadius: 75,
-        backgroundColor: 'lightgray',
+        backgroundColor: colors.lightgrey,
         justifyContent: 'center',
         alignItems: 'center',
-      },
+    },
       avatar: {
         width: 100,
         height: 100,
         borderRadius: 75,
-      },
+    },
       defaultAvatar: {
         width: 100,
         height: 100,
         borderRadius: 75,
-        backgroundColor: 'lightgray',
+        backgroundColor: colors.lightgrey,
         justifyContent: 'center',
         alignItems: 'center',
-      },
+    },
       plus: {
         fontSize: 50,
-        color: 'gray',
-      },
+        color: colors.darkGrey,
+    },
    
    
 

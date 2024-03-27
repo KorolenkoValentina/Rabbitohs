@@ -11,7 +11,8 @@ import { NavigationContainer} from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeStack from './HomeStack';
-import MomentsScreen from '../screens/home/screens/MomentsScreen';
+import MomentsStack from './MomentsStack';
+import ProfileScreen from '../screens/home/screens/account/ProfileScreen';
 import DrawLadderStack from './DrawLadderStack';
 import TeamStack from './TeamStack'
 import AccountStack from './AccountStack';
@@ -50,7 +51,7 @@ const MyTabs =()=> {
       options={{
         tabBarIcon:MomentsIcon ,
       }}
-       name="Moments" component={MomentsScreen}/>
+       name="Moments" component={MomentsStack}/>
       <Tab.Screen
       options={{
         
@@ -88,10 +89,10 @@ const  MyStack=()=> {
       headerShown: false,
     }}>
       <Stack.Screen name="New" component={MyTabs} />
-      <Stack.Screen name="Moment" component={MomentsScreen} />
-      <Stack.Screen name="Draw & Ladder" component={DrawLadderStack} />
+      <Stack.Screen name="Moment" component={MomentsStack} />
+      <Stack.Screen name="Draw & Ladders" component={DrawLadderStack} />
       <Stack.Screen name="Teams" component={TeamStack} />
-      <Stack.Screen name="Account" component={AccountStack} />
+      <Stack.Screen name="Accounts" component={AccountStack} />
     </Stack.Navigator>
   
   );
@@ -120,6 +121,7 @@ export default function Navigator() {
         <Stack.Screen name="Sign Up" component={SignUpScreen} />
         <Stack.Screen name="Login" component={LogInScreen} />
         <Stack.Screen name="Forgot password" component={ForrgotPasswordScreen} />
+        <Stack.Screen name="Profile" component={ProfileScreen} />
         <Stack.Screen name="MainTabs" component={MyStack} />
       </Stack.Navigator>
     </NavigationContainer>

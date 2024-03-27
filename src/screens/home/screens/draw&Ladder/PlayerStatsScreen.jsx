@@ -183,7 +183,7 @@ const PayerStatsScreen = ({ route }) => {
             case 'Team Stats':
               navigation.navigate('Team Stats', {roundData});
             break;
-            case 'Player Stats':
+            case 'Play by play':
               navigation.navigate('Play by play',{roundData});
             break;
       

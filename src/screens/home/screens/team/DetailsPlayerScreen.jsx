@@ -147,8 +147,8 @@ const styles = StyleSheet.create({
   },
 
   player: {
-      width: 263, 
-      height: 237,
+      width: 260, 
+      height: 235,
   },
 
   generalInfo:{

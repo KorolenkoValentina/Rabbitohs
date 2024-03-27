@@ -29,10 +29,8 @@ export default function  SignUpScreen (){
 
   const handleSignUp = async () => {
     const userData = { firstName, lastName, email };
+    await AsyncStorage.setItem('userData', JSON.stringify(userData));    
     navigation.navigate('Profile', { userData });
-    
-    await AsyncStorage.setItem('isLoggedIn', 'true');
-    navigation.replace('Login');
   };
 
   const handlePasswordChange = (text) => {
@@ -52,70 +50,68 @@ export default function  SignUpScreen (){
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.wrap}>
-            <Image source={require('../../images/logo.png')} style={styles.logo} />
-            <Text style={styles.titleHeader}> Create an account </Text>
-            <View style={styles.wrapFullNane}>
-                <TextInput
-                style={[styles.input,{width:155, marginRight:15}]}
-                onChangeText={setFirstName}
-                value={firstName}
-                placeholder="First Name"
-                />
-                <TextInput
-                style={[styles.input,{width:155}]}
-                onChangeText={setLasttName}
-                value={lastName}
-                placeholder="Last Name"
-                />
-            </View>
-            <TextInput
-                    style={styles.input}
-                    placeholder="Email"
-                    onChangeText={(text) => setEmail(text)}
-                    value={email}
-                    keyboardType="email-address"
-                    />
+        <Image source={require('../../images/logo.png')} style={styles.logo} />
+        <Text style={styles.titleHeader}> Create an account </Text>
+        <View style={styles.wrapFullNane}>
+          <TextInput
+            style={[styles.input,{width:155, marginRight:15}]}
+            onChangeText={setFirstName}
+            value={firstName}
+            placeholder="First Name"
+          />
+          <TextInput
+            style={[styles.input,{width:155}]}
+            onChangeText={setLasttName}
+            value={lastName}
+            placeholder="Last Name"
+          />
+        </View>
+        <TextInput
+          style={styles.input}
+          placeholder="Email"
+          onChangeText={(text) => setEmail(text)}
+          value={email}
+          keyboardType="email-address"
+        />
 
-            <View style={styles.passwordInput}>
-                <TextInput
-                style={styles.input}
-                placeholder="Enter your password"
-                secureTextEntry={!showPassword}
-                onChangeText={handlePasswordChange}
-                value={password}
-                required
-                />
-                <TouchableOpacity onPress={toggleShowPassword} style={styles.eyeIcon}>
-                    <Image source={showPassword ? require('../../images/eye.png') : require('../../images/eye.png')}
-                    style={styles.eyeIcon}
-                    />
-                </TouchableOpacity>
-            </View>
-            <View style={styles.passwordInput}>
-                <TextInput
-                style={styles.input}
-                placeholder="Confirm your password"
-                secureTextEntry={!showPassword}
-                onChangeText={setConfirmPassword}
-                value={confirmPassword}
-                required
-                />
-                <TouchableOpacity onPress={toggleShowPassword} style={styles.eyeIcon}>
-                    <Image source={showPassword ? require('../../images/eye.png') : require('../../images/eye.png')}
-                        style={styles.eyeIcon}
-                    />
-                </TouchableOpacity>
-            </View>
-            </View>
-            <TouchableOpacity style={styles.wrapButton} onPress={handleSignUp} >
-                <Text style={styles.titleButton}>SUBMIT</Text> 
-            </TouchableOpacity>
-            <View style={styles.wrapTitle}>
-                <Text>Already have an account?</Text>
-                <TouchableOpacity>
-                    <Text style={[styles.title, { textDecorationLine: 'underline' }]} onPress={navigateToLogIn}> Login</Text>
-                </TouchableOpacity>
-            </View>
+        <View style={styles.passwordInput}>
+          <TextInput
+            style={styles.input}
+            placeholder="Enter your password"
+            secureTextEntry={!showPassword}
+            onChangeText={handlePasswordChange}
+            value={password}
+            required
+          />
+          <TouchableOpacity onPress={toggleShowPassword} style={styles.eyeIcon}>
+            <Image source={showPassword ? require('../../images/eye.png') : require('../../images/eye.png')}style={styles.eyeIcon}/>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.passwordInput}>
+          <TextInput
+            style={styles.input}
+            placeholder="Confirm your password"
+            secureTextEntry={!showPassword}
+            onChangeText={setConfirmPassword}
+            value={confirmPassword}
+            required
+          />
+          <TouchableOpacity onPress={toggleShowPassword} style={styles.eyeIcon}>
+            <Image source={showPassword ? require('../../images/eye.png') : require('../../images/eye.png')}
+              style={styles.eyeIcon}
+            />
+          </TouchableOpacity>
+        </View>
+      </View>
+      <TouchableOpacity style={styles.wrapButton} onPress={handleSignUp} >
+        <Text style={styles.titleButton}>SUBMIT</Text> 
+      </TouchableOpacity>
+      <View style={styles.wrapTitle}>
+        <Text>Already have an account?</Text>
+        <TouchableOpacity>
+          <Text style={[styles.title, { textDecorationLine: 'underline' }]} onPress={navigateToLogIn}> Login</Text>
+        </TouchableOpacity>
+      </View>
              
         
     </SafeAreaView>
