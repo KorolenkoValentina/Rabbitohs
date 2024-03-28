@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect ,useFocusEffect, useState} from 'react';
 import 'react-native-gesture-handler';
 import {
   StyleSheet,
@@ -100,17 +100,22 @@ const  MyStack=()=> {
 
 export default function Navigator() {
  
-
   useEffect(() => {
     checkAuthStatus();
   }, []);
 
+  // const checkAuthStatus = async () => {
+  //   const isLoggedIn = await AsyncStorage.getItem('isLoggedIn');
+  //   const initialRouteName = isLoggedIn ? 'Login' : 'Sign Up';
+  //   navigation.replace(initialRouteName);
+  // };
+
   const checkAuthStatus = async () => {
     const isLoggedIn = await AsyncStorage.getItem('isLoggedIn');
-    const initialRouteName = isLoggedIn ? 'Login' : 'Sign Up';
-    // Змінюємо стартову сторінку в залежності від статусу ввійти/зареєструватися
+    const initialRouteName = isLoggedIn ? 'MainTabs' : 'Login';
     navigation.replace(initialRouteName);
-  };
+};
+
 
   return (
     <NavigationContainer>

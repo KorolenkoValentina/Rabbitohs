@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 
 import {colors} from '../../../../components/Colors';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 export default function  UpdatePasswordScreen (){
@@ -27,6 +28,30 @@ export default function  UpdatePasswordScreen (){
     const handlePasswordChange = (text) => {
         setPassword(text);
     };
+
+    const handleConfirmPasswordChange = (text) => {
+        setConfirmPassword(text);
+      };
+    
+      const savePassword = async () => {
+        try {
+          if (password !== confirmPassword) {
+            Alert.alert('Error', 'Passwords do not match');
+            return;
+          }
+          
+          // Save password to AsyncStorage
+          await AsyncStorage.setItem('userPassword', password);
+          Alert.alert('Success', 'Password updated successfully');
+          
+          // Clear input fields after successful update
+          setPassword('');
+          setConfirmPassword('');
+        } catch (error) {
+          console.error('Error saving password:', error);
+          Alert.alert('Error', 'Failed to update password');
+        }
+      };
     
 
 
@@ -55,7 +80,7 @@ export default function  UpdatePasswordScreen (){
                     style={styles.input}
                     placeholder="Confirm new password"
                     secureTextEntry={!showPassword}
-                    onChangeText={setConfirmPassword}
+                    onChangeText={handleConfirmPasswordChange}
                     value={confirmPassword}
                     required
                     />
@@ -67,6 +92,9 @@ export default function  UpdatePasswordScreen (){
                 </View>
                             
             </View>
+            <TouchableOpacity onPress={savePassword} style={styles.button}>
+                <Text style={styles.buttonText}>Update Password</Text>
+            </TouchableOpacity>
             <Text style={styles.title}>Forgot password?</Text>
         </SafeAreaView>
     );
@@ -84,7 +112,7 @@ const styles = StyleSheet.create({
         backgroundColor: colors.white,
         borderRadius:12,
         alignItems: 'center',
-        margin:30,
+        margin:25,
         paddingTop:20
 
     },
@@ -115,6 +143,18 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 10,
         right: 10,
+    },
+    button: {
+        width:'87%',
+        backgroundColor: colors.green,
+        borderRadius: 5,
+        paddingVertical: 15,
+        margin:25
+    },
+      buttonText: {
+        fontSize: 12,
+        color: colors.white, 
+        textAlign:'center'
     },
 })
 

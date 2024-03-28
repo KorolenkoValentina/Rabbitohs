@@ -25,11 +25,13 @@ const AccountScreen = () => {
 
   useEffect(() => {
     getUserData();
+   
   }, []);
 
   const getUserData = async () => {
     try {
       const userData = await AsyncStorage.getItem('userData');
+
       if (userData) {
         const parsedUserData = JSON.parse(userData);
         setFirstName(parsedUserData.firstName || '');
@@ -41,8 +43,6 @@ const AccountScreen = () => {
       console.error('Error retrieving user data:', error);
     }
   };
-
-
 
   const navigation = useNavigation();
 
@@ -84,6 +84,7 @@ const AccountScreen = () => {
       </TouchableOpacity>
     );
   };
+  
 
 
   const LogoutModal = ({ onClose }) => {

@@ -8,7 +8,8 @@ import {
   TextInput,
   TouchableOpacity,
   ScrollView,
-  Image
+  Image,
+  Linking
   
 } from 'react-native';
 
@@ -19,7 +20,6 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import * as ImagePicker from 'expo-image-picker';
 import { FacebookIcon,TikTokIcon,TwitterIcon,InstagramIcon } from '../../../../components/icons/SocialIcon';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
 
 
 
@@ -41,13 +41,14 @@ export default function  ProfileScreen ({ navigation, route }){
 
     const getUserData = async () => {
         try {
-          const storedUserData = await AsyncStorage.getItem('userData');
-          if (storedUserData) {
-            const parsedUserData = JSON.parse(storedUserData);
+          const userData = await AsyncStorage.getItem('userData');
+          if (userData) {
+            const parsedUserData = JSON.parse(userData);
             setFirstName(parsedUserData.firstName || '');
             setLastName(parsedUserData.lastName || '');
             setEmail(parsedUserData.email || '');
-            setBirthdate(new Date(parsedUserData.birthdate) || new Date());
+            const storedBirthdate = new Date(parsedUserData.birthdate);
+            setBirthdate(isNaN(storedBirthdate) ? new Date() : storedBirthdate);
             setGender(parsedUserData.gender || '');
             onChangeNumber(parsedUserData.number || '');
             setFacebook(parsedUserData.facebook || '')
@@ -109,22 +110,44 @@ export default function  ProfileScreen ({ navigation, route }){
 
     const handleSaveChanges = async () => {
         try {
-          const userData = { firstName, lastName, email, birthdate, gender, number, facebook, twitter, instagram, tikTok, image };
-          await AsyncStorage.setItem('userData', JSON.stringify(userData));
-          navigation.goBack(); 
+           
+            const userData = await AsyncStorage.getItem('userData');
+            const parsedUserData = JSON.parse(userData) || {};
+            
+            const updatedUserData = {
+                ...parsedUserData,
+                firstName,
+                lastName,
+                email,
+                birthdate,
+                gender,
+                number,
+                facebook,
+                twitter,
+                instagram,
+                tikTok,
+                image,
+                password: parsedUserData.password 
+            };
+    
+            await AsyncStorage.setItem('userData', JSON.stringify(updatedUserData));
+            navigation.goBack(); 
         } catch (error) {
-          console.error('Error saving data:', error);
+            console.error('Error saving data:', error);
         }
     };
 
-    const openSocialMediaLink = (socialMedia, link) => {
-        if (link.trim() !== '') {
-          const url = `https://www.${socialMedia}.com/${link.trim()}`;
-          Linking.openURL(url);
-        } else {
-          console.log(`${socialMedia} URL is empty`);
-        }
+    const openSocialLink = (link) => {
+        Linking.openURL(link);
     };
+    
+    const truncateText = (text) => {
+        if (text.length > 15) {
+          return text.substring(0, 40) + '...';
+        }
+        return text;
+    };
+      
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView>
@@ -214,51 +237,51 @@ export default function  ProfileScreen ({ navigation, route }){
             </View>
             <View style={styles.wrap}>
                 <View style={styles.socialContainer}>
-                    <TouchableOpacity style={styles.socialIcon} onPress={() => openSocialMediaLink('facebook', facebook)}>
+                    <TouchableOpacity style={styles.socialIcon} onPress={() => openSocialLink(facebook)}>
                         <FacebookIcon/>
                     </TouchableOpacity>
                     <TextInput
                         style={styles.input}
                         placeholder="Facebook URL"
                         onChangeText={(text) => setFacebook(text)}
-                        value={facebook}
+                        value={truncateText(facebook)}
                     />
 
                 </View>
 
                 <View style={styles.socialContainer}>
-                    <TouchableOpacity style={styles.socialIcon}  onPress={() => openSocialMediaLink('instagram', instagram)}>
+                    <TouchableOpacity style={styles.socialIcon}  onPress={() => openSocialLink(instagram)}>
                         <InstagramIcon/>
                     </TouchableOpacity>
                     <TextInput
                         style={styles.input}
                         placeholder="Instagram URL"
                         onChangeText={(text) => setInstagram(text)}
-                        value={instagram}
+                        value={truncateText(instagram)}
                     />
 
                 </View>
                 <View style={styles.socialContainer}>
-                    <TouchableOpacity style={styles.socialIcon}  onPress={() => openSocialMediaLink('tiktok', tikTok)}>
+                    <TouchableOpacity style={styles.socialIcon}  onPress={() => openSocialLink(tikTok)}>
                         <TikTokIcon/>
                     </TouchableOpacity>
                     <TextInput
                         style={styles.input}
                         placeholder="TikTok URL"
                         onChangeText={(text) => setTikTok(text)}
-                        value={tikTok}
+                        value={truncateText(tikTok)}
                     />
 
                 </View>
                 <View style={styles.socialContainer}>
-                    <TouchableOpacity style={styles.socialIcon} onPress={() => openSocialMediaLink('twitter', twitter)}>
+                    <TouchableOpacity style={styles.socialIcon} onPress={() => openSocialLink(twitter)}>
                         <TwitterIcon/>
                     </TouchableOpacity>
                     <TextInput
                         style={styles.input}
                         placeholder="Twitter URL"
                         onChangeText={(text) => setTwitter(text)}
-                        value={twitter}
+                        value={truncateText(twitter)}
                     />
 
                 </View>

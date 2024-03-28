@@ -7,7 +7,8 @@ import {
   Text,
   TextInput,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
+  Alert
   
 } from 'react-native';
 
@@ -28,11 +29,30 @@ export default function  LogInScreen (){
     };
 
     const handleLogin = async () => {
-       
-        await AsyncStorage.setItem('isLoggedIn', 'true');
-        
-        navigation.replace('MainTabs'); 
-      };
+        try {
+            const userData = await AsyncStorage.getItem('userData');
+            if (!userData) {
+                Alert.alert('User data not found. Please sign up.');
+                return;
+            }
+    
+            const parsedUserData = JSON.parse(userData);
+            console.log('User data from storage:', parsedUserData);
+    
+            if (parsedUserData.password === password) {
+                Alert.alert('Successful login!');
+                await AsyncStorage.setItem('isLoggedIn', 'true');
+                console.log('Logged in user:', parsedUserData.firstName); 
+                navigation.replace('MainTabs');
+            } else {
+                Alert.alert('Incorrect password!');
+            }
+        } catch (error) {
+            console.error('Error during login:', error);
+            Alert.alert('Error during login. Please try again.');
+        }
+    };
+    
     
     const navigateToSignUp = () => {
         navigation.navigate('Sign Up');
@@ -42,11 +62,6 @@ export default function  LogInScreen (){
         navigation.navigate('Forgot password');
     };
 
-
-    // const isEmailValid = (email) => {
-    //     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    //     return emailRegex.test(email);
-    //   };
 
     return (
         <SafeAreaView style={styles.container}>

@@ -7,7 +7,8 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  Image
+  Image,
+  Alert
   
 } from 'react-native';
 
@@ -18,7 +19,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function  SignUpScreen (){
   const [firstName, setFirstName] = useState('');
-  const [lastName, setLasttName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -28,9 +29,43 @@ export default function  SignUpScreen (){
   const navigation = useNavigation();
 
   const handleSignUp = async () => {
-    const userData = { firstName, lastName, email };
-    await AsyncStorage.setItem('userData', JSON.stringify(userData));    
-    navigation.navigate('Profile', { userData });
+
+    if (!firstName || !lastName || !email || !password || !confirmPassword) {
+      Alert.alert('Please fill in all required fields.');
+      return;
+    }
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{8,}$/;
+
+
+    if (!passwordRegex.test(password)) {
+      Alert.alert('Password must be at least 8  characters long and contain both letters and numbers.');
+      return;
+    }
+  
+    if (password !== confirmPassword) {
+      Alert.alert('Passwords do not match!');
+      return;
+    }
+
+    try {
+      const userData = { firstName, lastName, email, password };
+      await AsyncStorage.setItem('userData', JSON.stringify(userData));
+      console.log('User data from storage:', userData);
+  
+      setFirstName('');
+      setLastName('');
+      setEmail('');
+      setPassword('');
+      setConfirmPassword('');
+
+      Alert.alert('Account created successfully!');
+      
+      navigation.navigate('Login', { screen: 'Profile', params: { userData } });
+    } catch (error) {
+      console.error('Error saving data:', error);
+      
+      Alert.alert('Error creating account. Please try again.');
+    }
   };
 
   const handlePasswordChange = (text) => {
@@ -61,7 +96,7 @@ export default function  SignUpScreen (){
           />
           <TextInput
             style={[styles.input,{width:155}]}
-            onChangeText={setLasttName}
+            onChangeText={setLastName}
             value={lastName}
             placeholder="Last Name"
           />
