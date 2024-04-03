@@ -1,11 +1,6 @@
-import React, { useEffect ,useFocusEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import 'react-native-gesture-handler';
-import {
-  StyleSheet,
-  Image,
-  View, 
-  Text,
-} from 'react-native';
+
 import {colors} from '../components/Colors'
 import { NavigationContainer} from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -20,6 +15,7 @@ import SignUpScreen from '../screens/home/screens/registration/CreateAccountScre
 import LogInScreen from '../screens/home/screens/registration/LogInScreens';
 import ForrgotPasswordScreen from '../screens/home/screens/registration/ForrgotPasswordScreen';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useFocusEffect} from '@react-navigation/native';
 
 
 import {NewsIcon, MomentsIcon, DrawLadderIcon, TeamIcon, AccountIcon } from '../components/icons/NavigationScreenIcons'
@@ -99,27 +95,33 @@ const  MyStack=()=> {
 };
 
 export default function Navigator() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  // useFocusEffect(
+  //   React.useCallback(() => {
+  //     const checkLoginStatus = async () => {
+  //       const value = await AsyncStorage.getItem('isLoggedIn');
+  //       console.log('Before Login - isLoggedIn value:', value);
+  //       setIsLoggedIn(value === 'true');
+  //     };
+
+  //     checkLoginStatus();
+  //   }, [])
+  // );
  
   useEffect(() => {
     checkAuthStatus();
   }, []);
 
-  // const checkAuthStatus = async () => {
-  //   const isLoggedIn = await AsyncStorage.getItem('isLoggedIn');
-  //   const initialRouteName = isLoggedIn ? 'Login' : 'Sign Up';
-  //   navigation.replace(initialRouteName);
-  // };
-
   const checkAuthStatus = async () => {
-    const isLoggedIn = await AsyncStorage.getItem('isLoggedIn');
-    const initialRouteName = isLoggedIn ? 'MainTabs' : 'Login';
-    navigation.replace(initialRouteName);
-};
+    const userToken = await AsyncStorage.getItem('isLoggedIn');
+    setIsLoggedIn(!!userToken); 
+  };
 
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Sign Up"
+      <Stack.Navigator initialRouteName={isLoggedIn ? 'MainTabs' : 'Login'}
       screenOptions={{
         headerShown: false,
       }}>

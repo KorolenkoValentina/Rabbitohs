@@ -14,6 +14,7 @@ import YearModal from '../../components/YearModal';
 import {mockBacksYears} from '../../components/MockCommandsData'
 import { colors } from '../../../../components/Colors';
 import { useNavigation } from '@react-navigation/native';
+import {ArrowUpIcon , ArrowDownIcon } from '../../../../components/icons/ArrowIcons' 
 
 
 const DrawLadderScreen = () => {
@@ -107,8 +108,9 @@ const DrawLadderScreen = () => {
 
       <View style={styles.wrap}>
           <Text style={styles.title}>{selectedYear}</Text>
+
           <TouchableOpacity onPress={toggleMenu}>
-            <Image source={isMenuOpen ? require('../../images/profile/arrow.png') : require('../../images/profile/arrowDown.png')} style={styles.arrowIcon} />
+            {isMenuOpen ? <ArrowUpIcon style={styles.arrowIcon} /> : <ArrowDownIcon style={styles.arrowIcon} />}
           </TouchableOpacity>
         </View>
         <YearModal
@@ -140,6 +142,14 @@ const styles = StyleSheet.create({
     borderRadius:12,
     marginBottom:16,
     padding:10,
+    shadowColor: colors.darkGrey,
+    shadowOffSet: {
+      with:0,
+      height:12,
+    },
+    shadowOpacity:0.58,
+    shadowRadius: 16.00,
+    elevation: 5, 
     
   },
 
@@ -168,9 +178,6 @@ const styles = StyleSheet.create({
     height:40,
     width:40
 
-  },
-  arrowIcon:{
-    marginLeft:5
   },
 
   wrap:{

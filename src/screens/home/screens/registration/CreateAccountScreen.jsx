@@ -12,10 +12,12 @@ import {
   
 } from 'react-native';
 
-
+import 'react-native-get-random-values'
+import { v4 as uuidv4 } from 'uuid';
 import {colors} from '../../../../components/Colors';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {EyeIcon } from '../../../../components/icons/AccountScreenIcons'
 
 export default function  SignUpScreen (){
   const [firstName, setFirstName] = useState('');
@@ -27,6 +29,8 @@ export default function  SignUpScreen (){
 
 
   const navigation = useNavigation();
+
+  
 
   const handleSignUp = async () => {
 
@@ -47,20 +51,17 @@ export default function  SignUpScreen (){
       return;
     }
 
-    try {
-      const userData = { firstName, lastName, email, password };
-      await AsyncStorage.setItem('userData', JSON.stringify(userData));
-      console.log('User data from storage:', userData);
-  
-      setFirstName('');
-      setLastName('');
-      setEmail('');
-      setPassword('');
-      setConfirmPassword('');
+    const userId = uuidv4();
+    console.log(userId);
+    const userData = { firstName, lastName, email, password, userId };
 
-      Alert.alert('Account created successfully!');
-      
-      navigation.navigate('Login', { screen: 'Profile', params: { userData } });
+    try {
+
+      await AsyncStorage.setItem(`userData_${email}`, JSON.stringify(userData));
+        console.log('User data stored successfully:', userData);
+      await AsyncStorage.setItem(`userId_${email}`, userId); 
+       Alert.alert('Account created successfully!');
+      navigation.navigate('Login');
     } catch (error) {
       console.error('Error saving data:', error);
       
@@ -119,7 +120,7 @@ export default function  SignUpScreen (){
             required
           />
           <TouchableOpacity onPress={toggleShowPassword} style={styles.eyeIcon}>
-            <Image source={showPassword ? require('../../images/eye.png') : require('../../images/eye.png')}style={styles.eyeIcon}/>
+          {showPassword ? <EyeIcon/> : <EyeIcon/>}    
           </TouchableOpacity>
         </View>
         <View style={styles.passwordInput}>
@@ -132,9 +133,8 @@ export default function  SignUpScreen (){
             required
           />
           <TouchableOpacity onPress={toggleShowPassword} style={styles.eyeIcon}>
-            <Image source={showPassword ? require('../../images/eye.png') : require('../../images/eye.png')}
-              style={styles.eyeIcon}
-            />
+            {showPassword ? <EyeIcon/> : <EyeIcon/>}    
+             
           </TouchableOpacity>
         </View>
       </View>

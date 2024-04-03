@@ -14,6 +14,7 @@ import {
 
 import {colors} from '../../../../components/Colors';
 import { useNavigation } from '@react-navigation/native';
+import {EyeIcon } from '../../../../components/icons/AccountScreenIcons'
 
 export default function  SignUpScreen (){
   const [password, setPassword] = useState('');
@@ -58,9 +59,7 @@ export default function  SignUpScreen (){
                 required
                 />
                 <TouchableOpacity onPress={toggleShowPassword} style={styles.eyeIcon}>
-                    <Image source={showPassword ? require('../../images/eye.png') : require('../../images/eye.png')}
-                    style={styles.eyeIcon}
-                    />
+                  {showPassword ? <EyeIcon/> : <EyeIcon/>}    
                 </TouchableOpacity>
             </View>
             <View style={styles.passwordInput}>

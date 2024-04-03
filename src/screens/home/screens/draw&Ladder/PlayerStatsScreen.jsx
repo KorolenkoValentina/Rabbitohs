@@ -11,14 +11,13 @@ import {
 import Switcher from '../../components/Switcher';
 import { colors } from '../../../../components/Colors';
 import { useNavigation } from '@react-navigation/native';
-import LinearGradient from 'react-native-linear-gradient';
 
 
 const PayerStatsScreen = ({ route }) => {
   const [activeSection, setActiveSection] = useState('Player Stats')
 
   const navigation = useNavigation();
-  const { roundData } = route.params;
+  const { roundData, timeComponent } = route.params;
   
   const { teams } = roundData || { teams: [] };
   const team1 = teams[0];
@@ -80,11 +79,6 @@ const PayerStatsScreen = ({ route }) => {
   const maxFantasyPointsForwardsTeam2 = findPlayerWithMaxStat(team2.players?.forwards || [], 'fantasyPoints');
   const maxFantasyPointsTeam2 = maxFantasyPointsBacksTeam2?.runMetres > maxFantasyPointsForwardsTeam2?.runMetres ? maxFantasyPointsBacksTeam2 : maxFantasyPointsForwardsTeam2;
     
-  // Порівнюємо значення для backs та forwards
-    // const maxTackles = maxTacklesBacks?.tackles > maxTacklesForwards?.tackles ? maxTacklesBacks : maxTacklesForwards;
-    // const maxRunMetres = maxRunMetresBacks?.runMetres > maxRunMetresForwards?.runMetres ? maxRunMetresBacks : maxRunMetresForwards;
-    // const maxLineBreaks = maxLineBreaksBacks?.lineBreaks > maxLineBreaksForwards?.lineBreaks ? maxLineBreaksBacks : maxLineBreaksForwards;
-    // const maxFantasyPoints = maxFantasyPointsBacks?.fantasyPoints > maxFantasyPointsForwards?.fantasyPoints ? maxFantasyPointsBacks : maxFantasyPointsForwards;
   
   const PlayerItem = () => {
     return (
@@ -177,14 +171,14 @@ const PayerStatsScreen = ({ route }) => {
             setActiveSection(section);
     
           switch (section) {
+            case 'Play by play':
+              navigation.navigate('Details Stats',{roundData, timeComponent});
+            break;
             case 'Team List':
-              navigation.navigate('Team List',{roundData});
+              navigation.navigate('Team List',{roundData, timeComponent});
             break;
             case 'Team Stats':
-              navigation.navigate('Team Stats', {roundData});
-            break;
-            case 'Play by play':
-              navigation.navigate('Play by play',{roundData});
+              navigation.navigate('Team Stats', {roundData, timeComponent});
             break;
       
             default:
@@ -219,7 +213,6 @@ const styles = StyleSheet.create({
     borderTopStartRadius:12,
     borderBottomStartRadius:12,
     height:100,
-    // background: 'linear-gradient(to bottom right, #FF0000 50%, #0000FF 50%)',
 
 
   },

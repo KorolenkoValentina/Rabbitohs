@@ -38,12 +38,14 @@ export default function  ProfileScreen ({ navigation, route }){
     const [tikTok, setTikTok] = useState('');
     const [image, setImage]= useState(null)
 
-
-    const getUserData = async () => {
+    useEffect(() => {
+        const getUserData = async () => {
         try {
-          const userData = await AsyncStorage.getItem('userData');
+        const userData = await AsyncStorage.getItem('currentUser');
+          console.log('Raw userData from AsyncStorage:', userData);
           if (userData) {
             const parsedUserData = JSON.parse(userData);
+            console.log('Parsed userData:', parsedUserData);
             setFirstName(parsedUserData.firstName || '');
             setLastName(parsedUserData.lastName || '');
             setEmail(parsedUserData.email || '');
@@ -61,10 +63,8 @@ export default function  ProfileScreen ({ navigation, route }){
         } catch (error) {
           console.error('Error retrieving data:', error);
         }
-      };
-    
-      useEffect(() => {
-        getUserData(); 
+        };
+        getUserData();
     }, []);
     
 
@@ -110,15 +110,16 @@ export default function  ProfileScreen ({ navigation, route }){
 
     const handleSaveChanges = async () => {
         try {
-           
-            const userData = await AsyncStorage.getItem('userData');
+            const userId = await AsyncStorage.getItem(`userId_${email}`); 
+            const userData = await AsyncStorage.getItem(`userData_${email}`);
             const parsedUserData = JSON.parse(userData) || {};
+            
             
             const updatedUserData = {
                 ...parsedUserData,
                 firstName,
                 lastName,
-                email,
+                email: parsedUserData.email,
                 birthdate,
                 gender,
                 number,
@@ -127,10 +128,10 @@ export default function  ProfileScreen ({ navigation, route }){
                 instagram,
                 tikTok,
                 image,
-                password: parsedUserData.password 
+                password:parsedUserData.password,
+                userId: userId, 
             };
-    
-            await AsyncStorage.setItem('userData', JSON.stringify(updatedUserData));
+            await AsyncStorage.setItem(`userData_${email}`, JSON.stringify(updatedUserData));
             navigation.goBack(); 
         } catch (error) {
             console.error('Error saving data:', error);
@@ -311,7 +312,15 @@ const styles = StyleSheet.create({
         borderRadius:12,
         alignItems: 'center',
         margin:25,
-        paddingVertical:15
+        paddingVertical:15,
+        shadowColor: colors.darkGrey,
+      shadowOffSet: {
+        with:0,
+        height:12,
+      },
+      shadowOpacity:0.58,
+      shadowRadius: 16.00,
+      elevation: 5,
 
     },
     

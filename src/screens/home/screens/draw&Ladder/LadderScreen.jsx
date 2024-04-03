@@ -15,8 +15,8 @@ import YearModal from '../../components/YearModal';
 import RoundModal from '../../components/RoundModal';
 import { colors } from '../../../../components/Colors';
 import { useNavigation } from '@react-navigation/native';
+import {ArrowUpIcon , ArrowDownIcon, ArrowLeftIcon, ArrowRightIcon } from '../../../../components/icons/ArrowIcons' 
 
-// import ArrowRightIcon from '../../../../components/icons/AccountScreenIcons'
 
 
 const LadderScreen = ({ route}) => {
@@ -146,7 +146,7 @@ const LadderScreen = ({ route}) => {
           <View style={styles.wrapModal}>
             <Text style={styles.title}>{selectedYear}</Text>
             <TouchableOpacity onPress={toggleMenu}>
-              <Image source={isMenuOpen ? require('../../images/profile/arrow.png') : require('../../images/profile/arrowDown.png')} style={styles.arrowIcon} />
+            {isMenuOpen ? <ArrowUpIcon style={styles.arrowIcon} /> : <ArrowDownIcon style={styles.arrowIcon} />}
             </TouchableOpacity>
           </View>
         
@@ -158,7 +158,7 @@ const LadderScreen = ({ route}) => {
           />
           <View style={styles.wrapModal}>
             <TouchableOpacity onPress={selectPrevRound}>
-              <Image source={require('../../images/accountScreen/arrowLeft.png')} />
+              <ArrowLeftIcon color={colors.green}/>
             </TouchableOpacity>
             <Image source={require('../../images/teamScreen/line.png')} />
             <TouchableOpacity onPress={toggleRoundMenu}>
@@ -166,7 +166,7 @@ const LadderScreen = ({ route}) => {
             </TouchableOpacity>
             <Image source={require('../../images/teamScreen/line.png')} />
             <TouchableOpacity onPress={selectNextRound}>
-             <Image source={require('../../images/accountScreen/arrowRight.png')} />
+             <ArrowRightIcon/>
             </TouchableOpacity>
           </View>
           <RoundModal
@@ -201,12 +201,6 @@ const styles = StyleSheet.create({
     alignItems:'center'
   },
 
-  wrapItem:{
-    backgroundColor:colors.white,
-    borderRadius:12,
-    padding:10,
-    
-  },
 
   title: {
     color:colors.black,
@@ -218,7 +212,6 @@ const styles = StyleSheet.create({
     fontSize:11,
     
   },
- 
  
 
   image:{

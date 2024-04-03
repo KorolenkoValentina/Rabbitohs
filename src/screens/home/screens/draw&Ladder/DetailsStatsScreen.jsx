@@ -4,7 +4,6 @@ import {
   Text,
   StyleSheet,
   Image,
-  SafeAreaView,
   ScrollView
 
   
@@ -20,7 +19,7 @@ import {ErrorIcon, RegbyBallIcon, GoalMadeIcon, RestartIcon, MetresIcon, LinesIc
 const DetailsStatsScreen = ({ route }) => {
   const navigation = useNavigation();
   const [activeSection, setActiveSection] = useState('Play by play');
-  const { roundData } = route.params;
+  const { roundData, timeComponent } = route.params;
   const { teams } = roundData;
   const team1 = teams[0];
   const team2 = teams[1];
@@ -220,8 +219,8 @@ const DetailsStatsScreen = ({ route }) => {
   
 
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView>
+    <ScrollView style={styles.container}>
+      
       
        <Switcher
           sections={['Play by play', 'Team List', 'Team Stats', 'Player Stats']}
@@ -231,13 +230,13 @@ const DetailsStatsScreen = ({ route }) => {
     
           switch (section) {
             case 'Team List':
-              navigation.navigate('Team List',{roundData});
+              navigation.navigate('Team List',{roundData, timeComponent});
             break;
             case 'Team Stats':
-              navigation.navigate('Team Stats', {roundData});
+              navigation.navigate('Team Stats', {roundData, timeComponent});
             break;
             case 'Player Stats':
-              navigation.navigate('Player Stats', {roundData});
+              navigation.navigate('Player Stats', {roundData, timeComponent});
             break;
       
             default:
@@ -248,8 +247,8 @@ const DetailsStatsScreen = ({ route }) => {
         />
 
         {renderItem()}
-      </ScrollView> 
-     </SafeAreaView>
+     
+     </ScrollView >
   );
 };
 
@@ -268,6 +267,14 @@ const styles = StyleSheet.create({
     paddingVertical:10,
     backgroundColor:colors.white,
     marginHorizontal:25,
+    shadowColor: colors.darkGrey,
+    shadowOffSet: {
+      with:0,
+      height:12,
+    },
+    shadowOpacity:0.58,
+    shadowRadius: 16.00,
+    elevation: 5, 
     
   },
   item:{

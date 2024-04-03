@@ -135,12 +135,12 @@ const styles = StyleSheet.create({
     height:370
    },
      
-   background: {
-      justifyContent: 'space-evenly',
-      height: 262,
-      alignItems:'center',
+  background: {
+    justifyContent: 'space-evenly',
+    height: 262,
+    alignItems:'center',
  
-    },
+  },
 
   titleData:{
     color:colors.white,
@@ -155,6 +155,14 @@ const styles = StyleSheet.create({
     backgroundColor:colors.white,
     width:330,
     borderRadius:12,
+    shadowColor: colors.darkGrey,
+    shadowOffSet: {
+      with:0,
+      height:12,
+    },
+    shadowOpacity:0.58,
+    shadowRadius: 16.00,
+    elevation: 5, 
 
   },
 

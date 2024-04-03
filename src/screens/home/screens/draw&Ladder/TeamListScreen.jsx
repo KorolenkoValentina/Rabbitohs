@@ -3,7 +3,6 @@ import {
   View,
   Text,
   StyleSheet,
-  FlatList,
   Image,
   SectionList,
   ScrollView,
@@ -14,49 +13,37 @@ import { useNavigation } from '@react-navigation/native';
 import Switcher from '../../components/Switcher';
 
 
-const PlayerList = ({ data}) => {
- 
+const PlayerList = ({ data }) => {
   return (
-       
-    <FlatList
-    data={data}
-      keyExtractor={(item) => item.id}
-      renderItem={({ item }) => (
-        <View style={styles.wrapContent}>
-          <Image source={item.imageTeam} style={styles.player}/>
+    <View style={styles.playerContainer}>
+      {data.map((item) => (
+        <View key={item.id} style={styles.playerItem}>
+          <Image source={item.imageTeam} style={styles.player} />
           <Text style={styles.titleContent}>{item.fullName}</Text>
           <View style={styles.wrap}>
-            <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-evenly'}}>
-              <Text style={styles.wrapText}>1</Text>
-              <Image source={require('../../images/teamScreen/line2.png')}/>
-              <Text style={styles.wrapText}>2</Text>
+            <View style={styles.playerStats}>
+              <Text style={styles.playerStatText}>1</Text>
+              <Image source={require('../../images/teamScreen/line2.png')} />
+              <Text style={styles.playerStatText}>2</Text>
             </View>
-            <Text style={styles.wrapText}>{item.type}</Text>
+            <Text style={styles.playerStatText}>{item.type}</Text>
           </View>
-        </View>      
-   
-      )}
-    />
-       
+        </View>
+      ))}
+    </View>
   );
 };
 
-const PlayerListTwo = ({ data}) => {
+const PlayerListTwo = ({ data }) => {
   return (
-          
-    <FlatList
-      data={data}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (  
-        <View style={styles.wrapContent}>    
+    <View style={styles.playerContainer}>
+      {data.map((item) => (
+        <View key={item.id} style={styles.playerItem}>
           <Text style={styles.titleContent}>{item.fullName}</Text>
-          <Image source={item.imageTeam} style={styles.player2}/>   
-          
+          <Image source={item.imageTeam} style={styles.player2} />
         </View>
-      )}
-    />
-   
-    
+      ))}
+    </View>
   );
 };
 
@@ -64,7 +51,7 @@ const PlayerListTwo = ({ data}) => {
 const TeamListScreen = ({ route }) => {
   const navigation = useNavigation();
   const [activeSection, setActiveSection] = useState('Team List');
-  const { roundData } = route.params;
+  const { roundData, timeComponent } = route.params;
   const { teams } = roundData;
   const team1 = teams[0];
   const team2 = teams[1];
@@ -120,8 +107,8 @@ const TeamListScreen = ({ route }) => {
  
 
   return (
-    <View style={styles.container}>
-      <ScrollView>
+    <ScrollView style={styles.container}>
+     
        <Switcher
           sections={['Play by play', 'Team List', 'Team Stats', 'Player Stats']}
           activeSection={activeSection}
@@ -130,13 +117,13 @@ const TeamListScreen = ({ route }) => {
     
           switch (section) {
             case 'Play by play':
-              navigation.navigate('Details Stats',{roundData});
+              navigation.navigate('Details Stats',{roundData,timeComponent});
             break;
             case 'Team Stats':
-              navigation.navigate('Team Stats', {roundData});
+              navigation.navigate('Team Stats', {roundData, timeComponent});
             break;
             case 'Player Stats':
-              navigation.navigate('Player Stats', {roundData});
+              navigation.navigate('Player Stats', {roundData, timeComponent});
             break;
       
             default:
@@ -164,9 +151,9 @@ const TeamListScreen = ({ route }) => {
         
       />
       <List/>
-      </ScrollView>
       
-    </View>
+      
+    </ScrollView>
   );
 };
 
@@ -185,7 +172,15 @@ const styles = StyleSheet.create({
     paddingVertical:10,
     backgroundColor:colors.white,
     marginHorizontal:25,
-    height:100
+    height:100,
+    shadowColor: colors.darkGrey,
+    shadowOffSet: {
+      with:0,
+      height:12,
+    },
+    shadowOpacity:0.58,
+    shadowRadius: 16.00,
+    elevation: 5, 
   },
   item:{
     borderRadius:12,
@@ -193,7 +188,14 @@ const styles = StyleSheet.create({
     padding:15,
     backgroundColor:colors.white,
     marginHorizontal:25,
-    
+    shadowColor: colors.darkGrey,
+    shadowOffSet: {
+      with:0,
+      height:12,
+    },
+    shadowOpacity:0.58,
+    shadowRadius: 16.00,
+    elevation: 5, 
 
   },
  
@@ -213,9 +215,16 @@ const styles = StyleSheet.create({
 
   },
 
-  wrapContent:{
+  playerItem:{
     flexDirection:'row',
     right: 4,
+  },
+
+  playerStats:{
+    flexDirection:'row',
+    alignItems:'center',
+    justifyContent:'space-evenly'
+
   },
 
   titleContent:{
@@ -255,7 +264,7 @@ const styles = StyleSheet.create({
     bottom:-62,
     right: 40,
   },
-  wrapText:{
+  playerStatText:{
     fontSize: 11,
     color:colors.extraDarkGrey,
   }

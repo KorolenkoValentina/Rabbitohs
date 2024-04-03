@@ -15,33 +15,38 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import {colors} from '../../../../components/Colors';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {EyeIcon } from '../../../../components/icons/AccountScreenIcons'
 
 
-export default function  LogInScreen (){
+export default function  LogInScreen ({route}){
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const navigation = useNavigation();
 
-   
+    
     const toggleShowPassword = () => {
         setShowPassword(!showPassword);
     };
 
+    
+
     const handleLogin = async () => {
         try {
-            const userData = await AsyncStorage.getItem('userData');
-            if (!userData) {
-                Alert.alert('User data not found. Please sign up.');
+            const userId = await AsyncStorage.getItem(`userId_${email}`);
+            if (!userId) {
+             Alert.alert('User not found. Please sign up.');
                 return;
             }
-    
+       
+            const userData = await AsyncStorage.getItem(`userData_${email}`);
             const parsedUserData = JSON.parse(userData);
             console.log('User data from storage:', parsedUserData);
-    
             if (parsedUserData.password === password) {
                 Alert.alert('Successful login!');
+            
                 await AsyncStorage.setItem('isLoggedIn', 'true');
+                await AsyncStorage.setItem('currentUser', JSON.stringify(parsedUserData));
                 console.log('Logged in user:', parsedUserData.firstName); 
                 navigation.replace('MainTabs');
             } else {
@@ -51,6 +56,7 @@ export default function  LogInScreen (){
             console.error('Error during login:', error);
             Alert.alert('Error during login. Please try again.');
         }
+    
     };
     
     
@@ -89,9 +95,7 @@ export default function  LogInScreen (){
                     required
                     />
                     <TouchableOpacity onPress={toggleShowPassword} style={styles.eyeIcon}>
-                        <Image source={showPassword ? require('../../images/eye.png') : require('../../images/eye.png')}
-                            style={styles.eyeIcon}
-                        />
+                        {showPassword ? <EyeIcon/> : <EyeIcon/>}                       
                     </TouchableOpacity>
                 </View>
                 </View>

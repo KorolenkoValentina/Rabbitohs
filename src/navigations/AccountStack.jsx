@@ -2,11 +2,11 @@ import React from 'react';
 import 'react-native-gesture-handler';
 import {
   Image,
-  
+  TouchableOpacity
 } from 'react-native';
 
 
-// import { useNavigation} from '@react-navigation/native';
+
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import AccountScreen from '../screens/home/screens/account/AccountScreen';
 import HelpAndSupportScreen from '../screens/home/screens/account/HelpSupportScreen';
@@ -14,20 +14,15 @@ import UpdatePasswordScreen from '../screens/home/screens/account/UpdatePassword
 import ProfileScreen from '../screens/home/screens/account/ProfileScreen';
 import GenderSelectionScreen from '../screens/home/screens/account/GenderSelectionScreen';
 import {colors} from '../components/Colors'
-
+import { BellIcon } from '../components/icons/NavigationScreenIcons';
+import { ArrowLeftIcon } from '../components/icons/ArrowIcons';
+import { useNavigation } from '@react-navigation/native';
 
 
 
 const AccountStack =()=>{
-    // const navigation = useNavigation();
+  const navigation = useNavigation();
   const AccountStack = createNativeStackNavigator();
-
-  const BellIcon = () => (
-    <Image
-      source={require('../navigations/image/bell.png')}
-      style={{ width: 24, height: 24 }}
-    />
-  );
  
   return(
     <AccountStack.Navigator
@@ -47,8 +42,14 @@ const AccountStack =()=>{
         
       <AccountStack.Screen 
       name="Profile" component={ProfileScreen} 
-      
-      />
+      options={() => ({
+        headerBackVisible: false,
+        headerLeft: () => (
+          <TouchableOpacity onPress={() => navigation.pop()}>
+            <ArrowLeftIcon color={colors.black}/>
+          </TouchableOpacity>
+        ),      
+      })}/>
 
       {/* <AccountStack.Screen 
       name="Purchases" component={} 
@@ -64,16 +65,36 @@ const AccountStack =()=>{
       name="Notifications" component={} 
       /> */}
        <AccountStack.Screen 
-      name="Update Password" component={UpdatePasswordScreen} 
-      />
+        name="Update Password" component={UpdatePasswordScreen} 
+        options={() => ({
+        headerBackVisible: false,
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => navigation.pop()}>
+              <ArrowLeftIcon color={colors.black}/>
+            </TouchableOpacity>
+          ),      
+      })}/>
        <AccountStack.Screen 
       name="Help & Support" component={HelpAndSupportScreen} 
-      />
-
+      options={() => ({
+        headerBackVisible: false,
+        headerLeft: () => (
+          <TouchableOpacity onPress={() => navigation.pop()}>
+            <ArrowLeftIcon color={colors.black}/>
+          </TouchableOpacity>
+        ),      
+      })}/>
+      
       <AccountStack.Screen 
       name="Choose gender" component={GenderSelectionScreen} 
-      
-      />
+      options={() => ({
+        headerBackVisible: false,
+        headerLeft: () => (
+          <TouchableOpacity onPress={() => navigation.pop()}>
+            <ArrowLeftIcon color={colors.black}/>
+          </TouchableOpacity>
+        ),      
+      })}/>
        
        
     </AccountStack.Navigator>

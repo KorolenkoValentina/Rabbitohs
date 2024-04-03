@@ -6,26 +6,15 @@ import {
 } from 'react-native';
 
 
-// import { useNavigation} from '@react-navigation/native';
+
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import MomentsScreen from '../screens/home/screens/MomentsScreen';
-
+import { BellIcon } from '../components/icons/NavigationScreenIcons';
 
 
 
 const MomentsStack =()=>{
-    // const navigation = useNavigation();
     const MomentsStack = createNativeStackNavigator();
-
-
-
-
-    const BellIcon = () => (
-        <Image
-          source={require('../navigations/image/bell.png')}
-          style={{ width: 24, height: 24 }}
-        />
-    );
 
 
   

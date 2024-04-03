@@ -4,11 +4,11 @@ import {
   Image,
   View,
   Text,
-  StyleSheet
+  StyleSheet,
+  TouchableOpacity
 } from 'react-native';
 
-
-// import { useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import DrawLadderScreen from '../screens/home/screens/draw&Ladder/DrawLadderScreen';
 import LadderScreen from '../screens/home/screens/draw&Ladder/LadderScreen';
@@ -19,12 +19,13 @@ import TeamListScreen from '../screens/home/screens/draw&Ladder/TeamListScreen';
 import PayerStatsScreen from '../screens/home/screens/draw&Ladder/PlayerStatsScreen';
 import TeamStatsScreen from '../screens/home/screens/draw&Ladder/TeamStatsScreen';
 import {colors} from '../components/Colors'
+import { ArrowLeftIcon } from '../components/icons/ArrowIcons';
 
 
 
 
 const DrawLadderStack =()=>{
-    // const navigation = useNavigation();
+  const navigation = useNavigation();
   const DrawLadderStack = createNativeStackNavigator();
 
   const LogoIcon = () => (
@@ -36,14 +37,6 @@ const DrawLadderStack =()=>{
       
   );
 
-  const ArrowIcon = () => (
-      
-    <Image
-    source={require('./image/back.png')}
-    style={{ width: 24, height: 24 }}
-    />
-      
-  );
 
 
   
@@ -60,7 +53,12 @@ const DrawLadderStack =()=>{
 
       <DrawLadderStack.Screen 
         name="Ladder" component={LadderScreen} 
-      />
+        options={() => ({
+         
+          headerBackVisible: false,
+        
+      })}/>
+      
 
       <DrawLadderStack.Screen 
         name="Match" component={MatchScreen} 
@@ -68,7 +66,12 @@ const DrawLadderStack =()=>{
           headerStyle: {
             backgroundColor: colors.green, 
           },
-          headerBackImageSource: require('./image/back.png') ,
+          headerBackVisible: false,
+          headerLeft: () => (
+          <TouchableOpacity onPress={() => navigation.pop()}>
+            <ArrowLeftIcon color={colors.white}/>
+          </TouchableOpacity>
+          ),
           headerTitle: () => (
             
           <Text style={styles.title}>Telstra Premiership</Text>
@@ -78,13 +81,24 @@ const DrawLadderStack =()=>{
       />
       <DrawLadderStack.Screen 
         name="Article" component={ArticleScreen} 
-        
+        options={() => ({
+          headerBackVisible: false,
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => navigation.pop()}>
+              <ArrowLeftIcon color={colors.black}/>
+            </TouchableOpacity>
+          ),})}
       /> 
 
       <DrawLadderStack.Screen 
         name="Details Stats" component={DetailsStatsScreen} 
         options={({ route }) => ({
-          headerBackImageSource: require('./image/back.png') ,
+          headerBackVisible: false,
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => navigation.pop()}>
+              <ArrowLeftIcon color={colors.black}/>
+            </TouchableOpacity>
+          ),
           headerTitle: () => (
             <View style={styles.wrapCommands}>
             <Image source={route.params.roundData.teams[0].image} style={styles.image} />            
@@ -100,14 +114,68 @@ const DrawLadderStack =()=>{
 
       <DrawLadderStack.Screen 
         name="Team List" component={TeamListScreen} 
-        
+        options={({ route }) => ({
+          headerBackVisible: false,
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => navigation.pop()}>
+              <ArrowLeftIcon color={colors.black}/>
+            </TouchableOpacity>
+          ),
+          headerTitle: () => (
+            <View style={styles.wrapCommands}>
+            <Image source={route.params.roundData.teams[0].image} style={styles.image} />            
+            {route.params.roundData.teams[0].goals && <Text style={styles.subtitle}>{route.params.roundData.teams[0].goals}</Text>}
+            {route.params.timeComponent}
+            {route.params.roundData.teams[1].goals && <Text style={styles.subtitle}>{route.params.roundData.teams[1].goals}</Text>}
+            <Image source={route.params.roundData.teams[1].image} style={styles.image} />
+              
+          </View>
+          ),
+        })}
+                
       />
        <DrawLadderStack.Screen 
         name="Team Stats" component={TeamStatsScreen} 
+        options={({ route }) => ({
+          headerBackVisible: false,
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => navigation.pop()}>
+              <ArrowLeftIcon color={colors.black}/>
+            </TouchableOpacity>
+          ),
+          headerTitle: () => (
+            <View style={styles.wrapCommands}>
+            <Image source={route.params.roundData.teams[0].image} style={styles.image} />            
+            {route.params.roundData.teams[0].goals && <Text style={styles.subtitle}>{route.params.roundData.teams[0].goals}</Text>}
+            {route.params.timeComponent}
+            {route.params.roundData.teams[1].goals && <Text style={styles.subtitle}>{route.params.roundData.teams[1].goals}</Text>}
+            <Image source={route.params.roundData.teams[1].image} style={styles.image} />
+              
+          </View>
+          ),
+        })}
         
       />
       <DrawLadderStack.Screen 
         name="Player Stats" component={PayerStatsScreen} 
+        options={({ route }) => ({
+          headerBackVisible: false,
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => navigation.pop()}>
+              <ArrowLeftIcon color={colors.black}/>
+            </TouchableOpacity>
+          ),
+          headerTitle: () => (
+            <View style={styles.wrapCommands}>
+            <Image source={route.params.roundData.teams[0].image} style={styles.image} />            
+            {route.params.roundData.teams[0].goals && <Text style={styles.subtitle}>{route.params.roundData.teams[0].goals}</Text>}
+            {route.params.timeComponent}
+            {route.params.roundData.teams[1].goals && <Text style={styles.subtitle}>{route.params.roundData.teams[1].goals}</Text>}
+            <Image source={route.params.roundData.teams[1].image} style={styles.image} />
+              
+          </View>
+          ),
+        })}
         
       />
 
@@ -137,6 +205,8 @@ const styles = StyleSheet.create({
   image:{
     height:40,
     width:40,
+    marginRight:10,
+    marginLeft:10
 
   },
 

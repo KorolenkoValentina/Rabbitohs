@@ -13,6 +13,7 @@ import {
 
 import {colors} from '../../../../components/Colors';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {EyeIcon } from '../../../../components/icons/AccountScreenIcons'
 
 
 export default function  UpdatePasswordScreen (){
@@ -69,9 +70,7 @@ export default function  UpdatePasswordScreen (){
                     required
                     />
                     <TouchableOpacity onPress={toggleShowPassword} style={styles.eyeIcon}>
-                        <Image source={showPassword ? require('../../images/eye.png') : require('../../images/eye.png')}
-                            style={styles.eyeIcon}
-                        />
+                    {showPassword ? <EyeIcon/> : <EyeIcon/>}   
                     </TouchableOpacity>
                 </View>
 
@@ -85,9 +84,7 @@ export default function  UpdatePasswordScreen (){
                     required
                     />
                     <TouchableOpacity onPress={toggleShowPassword} style={styles.eyeIcon}>
-                        <Image source={showPassword ? require('../../images/eye.png') : require('../../images/eye.png')}
-                            style={styles.eyeIcon}
-                        />
+                    {showPassword ? <EyeIcon/> : <EyeIcon/>}   
                     </TouchableOpacity>
                 </View>
                             
@@ -113,7 +110,15 @@ const styles = StyleSheet.create({
         borderRadius:12,
         alignItems: 'center',
         margin:25,
-        paddingTop:20
+        paddingTop:20,
+        shadowColor: colors.darkGrey,
+      shadowOffSet: {
+        with:0,
+        height:12,
+      },
+      shadowOpacity:0.58,
+      shadowRadius: 16.00,
+      elevation: 5,
 
     },
     

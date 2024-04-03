@@ -3,7 +3,7 @@ import { View, FlatList, Image, TouchableOpacity, Modal, StyleSheet, Text } from
 import { mockMomentsData } from '../components/MockMomentsData';
 import { colors } from '../../../components/Colors';
 
-const MomentsScreen = ({ navigation }) => {
+const MomentsScreen = () => {
   
 
   const [selectedImage, setSelectedImage] = useState(null);

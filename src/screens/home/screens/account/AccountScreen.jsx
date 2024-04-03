@@ -22,15 +22,13 @@ const AccountScreen = () => {
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [image, setImage] = useState(null);
-
+  
+  
   useEffect(() => {
-    getUserData();
-   
-  }, []);
-
-  const getUserData = async () => {
+    const getUserData = async () => {
     try {
-      const userData = await AsyncStorage.getItem('userData');
+      const userData = await AsyncStorage.getItem('currentUser');
+      console.log('Raw userData from AsyncStorage AccountScreen :', userData);
 
       if (userData) {
         const parsedUserData = JSON.parse(userData);
@@ -42,7 +40,11 @@ const AccountScreen = () => {
     } catch (error) {
       console.error('Error retrieving user data:', error);
     }
-  };
+    }
+    getUserData();
+  }, []);
+  
+ 
 
   const navigation = useNavigation();
 
@@ -73,13 +75,20 @@ const AccountScreen = () => {
     navigation.navigate('Help & Support' )
   };
 
-  const onPressLogout = () => {
+  const onPressLogout = async ()  => {
+    const userData = await AsyncStorage.getItem('currentUser');
+    console.log('User data found in AsyncStorage:', userData);
     navigation.replace('Login');
+  
+
   };
 
-  const LogoutButton = ({ onPress }) => {
+  const LogoutButton = () => {
+    const handleLogout = () => {
+      setShowModal(true); 
+    };
     return (
-      <TouchableOpacity onPress={onPress}>
+      <TouchableOpacity onPress={handleLogout}>
         <Text style={styles.titleButton}>Log Out</Text>
       </TouchableOpacity>
     );
@@ -101,7 +110,7 @@ const AccountScreen = () => {
           <SafeAreaView style={styles.modalContent}>
             <Text style={styles.titleModal}>Log Out</Text>
             <Text style={styles.subtitleModal}>Are you sure want to log out?</Text>
-            <TouchableOpacity   style={styles.wrapButton}  >
+            <TouchableOpacity  onPress={onPressLogout} style={styles.wrapButton}  >
               <Text style={styles.titleButtonLogOut}>YES, LOG OUT</Text> 
             </TouchableOpacity>
             <TouchableOpacity  onPress={handleCancel}>
@@ -128,7 +137,7 @@ const AccountScreen = () => {
             </View>
           )}
         </TouchableOpacity>
-        <Text style={styles.name}>{firstName}{lastName}</Text>
+        <Text style={styles.name}>{firstName}  {lastName}</Text>
         <Text style={styles.email}>{email}</Text>
 
 
@@ -176,7 +185,7 @@ const AccountScreen = () => {
         IconArrow={ArrowRightIcon}
         onPress={onPressSupport}
       />
-      <LogoutButton onPress={onPressLogout}/>
+      <LogoutButton />
       {showModal && <LogoutModal onClose={() => setShowModal(false)} />}
       
     </View>
@@ -217,6 +226,14 @@ const styles = StyleSheet.create({
     borderRadius:12,
     padding: 15,
     marginBottom: 12,
+    shadowColor: colors.darkGrey,
+      shadowOffSet: {
+        with:0,
+        height:12,
+      },
+      shadowOpacity:0.58,
+      shadowRadius: 16.00,
+      elevation: 5,
     
   },
 

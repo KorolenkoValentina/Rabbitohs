@@ -96,9 +96,7 @@ const styles = StyleSheet.create({
   },
 
   background: {
-    // flex: 1,
     justifyContent: 'center',
-    // resizeMode:"stretch",
     width: 327,
     height: 100,
     marginTop: 24,

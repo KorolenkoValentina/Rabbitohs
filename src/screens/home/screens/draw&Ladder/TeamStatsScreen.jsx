@@ -21,7 +21,7 @@ import SemiCircleProgressBar from '../../components/SemiCircleProgressBar';
 const TeamStatsScreen = ({ route }) => {
   const navigation = useNavigation();
   const [activeSection, setActiveSection] = useState('Team Stats');
-  const { roundData } = route.params;
+  const { roundData, timeComponent } = route.params;
   const { teams } = roundData;
   const team1 = teams[0];
   const team2 = teams[1];
@@ -194,8 +194,7 @@ const TeamStatsScreen = ({ route }) => {
 
 
   return (
-    <View style={styles.container}>
-      <ScrollView>
+    <ScrollView style={styles.container}>
        <Switcher
           sections={['Play by play', 'Team List', 'Team Stats', 'Player Stats']}
           activeSection={activeSection}
@@ -204,13 +203,13 @@ const TeamStatsScreen = ({ route }) => {
     
           switch (section) {
             case 'Play by play':
-              navigation.navigate('Details Stats',{roundData});
+              navigation.navigate('Details Stats',{roundData, timeComponent});
             break;
             case 'Team List':
-              navigation.navigate('Team List', {roundData});
+              navigation.navigate('Team List', {roundData, timeComponent});
             break;
             case 'Player Stats':
-              navigation.navigate('Player Stats', {roundData});
+              navigation.navigate('Player Stats', {roundData, timeComponent});
             break;
       
             default:
@@ -221,9 +220,9 @@ const TeamStatsScreen = ({ route }) => {
       />
        
      <RenderItem/>
-      </ScrollView>
+    
       
-    </View>
+    </ScrollView>
   );
 };
 
@@ -240,6 +239,14 @@ const styles = StyleSheet.create({
     paddingVertical:10,
     backgroundColor:colors.white,
     marginHorizontal:25,
+    shadowColor: colors.darkGrey,
+    shadowOffSet: {
+      with:0,
+      height:12,
+    },
+    shadowOpacity:0.58,
+    shadowRadius: 16.00,
+    elevation: 5,
     
     
   },

@@ -13,6 +13,9 @@ import {
 import { colors } from '../../../../components/Colors';
 import Switcher from '../../components/Switcher';
 import YearModal from '../../components/YearModal';
+import {ArrowUpIcon , ArrowDownIcon } from '../../../../components/icons/ArrowIcons' 
+import {RegbyBallIcon, AttackBallIcon} from '../../../../components/icons/DetailsStatsScreenIcons' 
+import {AppearancesIcon, KickingIcon , PassingIcon , DefenceIcon ,RunningMetresIcon, FantasyIcon } from '../../../../components/icons/PlayerInfoStatsIcons' 
 
 
 
@@ -53,7 +56,7 @@ const PlayerInfoStatsScreen = ({ route})=> {
             <View style={styles.wrap}>
                 <Text style={styles.title}>Season stats {selectedYear}</Text>
                 <TouchableOpacity onPress={toggleMenu}>
-                <Image source={isMenuOpen ? require('../../images/profile/arrow.png') : require('../../images/profile/arrowDown.png')} style={styles.arrowIcon} />
+                {isMenuOpen ? <ArrowUpIcon  /> : <ArrowDownIcon  />}
                 </TouchableOpacity>
             </View>
             <YearModal 
@@ -66,7 +69,7 @@ const PlayerInfoStatsScreen = ({ route})=> {
             <View style={styles.wrapItem}>
                 <View style={styles.seasonInfo}>
                     <View style={styles.wrapTitle}>
-                        <Image source={require('../../images/profile/icons.png')} style={styles.icon} />
+                        <AppearancesIcon/>
                         <Text style={styles.titleInfo}>APPEARANCES</Text> 
                     </View>
                     <Text style={styles.textInfo}>{seasonStats.appearances}</Text> 
@@ -77,7 +80,7 @@ const PlayerInfoStatsScreen = ({ route})=> {
             <View style={styles.wrapItem}>
                 <View style={ styles.sectionFirst}>
                     <View style={styles.wrapTitle}>
-                        <Image source={require('../../images/profile/rugbyIcons.png')} style={styles.icon} />
+                        <RegbyBallIcon color={colors.green}/>
                         <Text style={styles.titleInfo}>SCORING</Text>
                         
                     </View>
@@ -100,7 +103,7 @@ const PlayerInfoStatsScreen = ({ route})=> {
             <View style={styles.wrapItem}>
                 <View style={ styles.sectionFirst}>
                     <View style={styles.wrapTitle}>
-                        <Image source={require('../../images/profile/kickings.png')} style={styles.icon} />
+                        <KickingIcon/>
                         <Text style={styles.titleInfo}>KICKING</Text>
                         
                     </View>
@@ -129,7 +132,7 @@ const PlayerInfoStatsScreen = ({ route})=> {
             <View style={styles.wrapItem}>
                 <View style={ styles.sectionFirst}>
                     <View style={styles.wrapTitle}>
-                        <Image source={require('../../images/profile/attack.png')} style={styles.icon} />
+                        <AttackBallIcon color={colors.green}/>
                         <Text style={styles.titleInfo}>ATTACK</Text>
                         
                     </View>
@@ -152,7 +155,7 @@ const PlayerInfoStatsScreen = ({ route})=> {
             <View style={styles.wrapItem}>
                 <View style={ styles.sectionFirst}>
                     <View style={styles.wrapTitle}>
-                        <Image source={require('../../images/profile/passing.png')} style={styles.icon} />
+                        <PassingIcon/>
                         <Text style={styles.titleInfo}>PASSING</Text>
                         
                     </View>
@@ -175,7 +178,7 @@ const PlayerInfoStatsScreen = ({ route})=> {
             <View style={styles.wrapItem}>
                 <View style={ styles.sectionFirst}>
                     <View style={styles.wrapTitle}>
-                        <Image source={require('../../images/profile/defence.png')} style={styles.icon} />
+                        <DefenceIcon/>
                         <Text style={styles.titleInfo}>DEFENCE</Text>
                         
                     </View>
@@ -198,7 +201,7 @@ const PlayerInfoStatsScreen = ({ route})=> {
             <View style={styles.wrapItem}>
                 <View style={ styles.sectionFirst}>
                     <View style={styles.wrapTitle}>
-                        <Image source={require('../../images/profile/runing.png')} style={styles.icon} />
+                        <RunningMetresIcon/>
                         <Text style={styles.titleInfo}>RUNNING METRES</Text>
                         
                     </View>
@@ -221,7 +224,7 @@ const PlayerInfoStatsScreen = ({ route})=> {
             <View style={styles.wrapItem}>
                 <View style={ styles.sectionFirst}>
                     <View style={styles.wrapTitle}>
-                        <Image source={require('../../images/profile/fantasy.png')} style={styles.icon} />
+                       <FantasyIcon/>
                         <Text style={styles.titleInfo}>FANTASY</Text>
                         
                     </View>
@@ -295,7 +298,15 @@ const styles = StyleSheet.create({
   wrapItem:{
     backgroundColor:colors.white,
     borderRadius:12,
-    marginBottom:16
+    marginBottom:16,
+    shadowColor: colors.darkGrey,
+      shadowOffSet: {
+        with:0,
+        height:12,
+      },
+      shadowOpacity:0.58,
+      shadowRadius: 16.00,
+      elevation: 5,
     
    },
 
@@ -328,6 +339,7 @@ const styles = StyleSheet.create({
    titleInfo:{
     color:colors.green,
     fontSize:11,
+    marginLeft:10
     
    },
    subtitleInfo:{
@@ -352,9 +364,7 @@ const styles = StyleSheet.create({
     marginVertical:16,
 
    },
-   arrowIcon:{
-        marginLeft:5
-    },
+  
 
     wrap:{
         flexDirection:'row',

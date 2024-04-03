@@ -51,7 +51,15 @@ const styles = StyleSheet.create({
     borderRadius:12,
     alignItems: 'center',
     marginBottom:12,
-    paddingVertical:20
+    paddingVertical:20,
+    shadowColor: colors.darkGrey,
+      shadowOffSet: {
+        with:0,
+        height:12,
+      },
+      shadowOpacity:0.58,
+      shadowRadius: 16.00,
+      elevation: 5,
   },
   title: {
     fontSize: 14,

@@ -4,22 +4,24 @@ import {
   Image,
   View,
   Text,
-  StyleSheet
+  StyleSheet,
+  TouchableOpacity
 } from 'react-native';
 
 
-// import { useNavigation} from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import TeamScreen from '../screens/home/screens/team/TeamScreen';
 import DetailsPlayerscreen from '../screens/home/screens/team/DetailsPlayerScreen';
 import PlayerInfoStatsScreen from '../screens/home/screens/team/PlayerInfoStats';
 import {colors} from '../components/Colors'
+import { ArrowLeftIcon } from '../components/icons/ArrowIcons';
+import { useNavigation } from '@react-navigation/native';
 
 
 
 
 const TeamStack =()=>{
-    // const navigation = useNavigation();
+  const navigation = useNavigation();
   const TeamStack = createNativeStackNavigator();
 
   const LogoIcon = () => (
@@ -27,15 +29,6 @@ const TeamStack =()=>{
     <Image
     source={require('../screens/home/images/logo.png')}
     style={{ width: 54, height: 54 }}
-    />
-      
-  );
-
-  const ArrowIcon = () => (
-      
-    <Image
-    source={require('./image/back.png')}
-    style={{ width: 24, height: 24 }}
     />
       
   );
@@ -60,7 +53,13 @@ const TeamStack =()=>{
         headerStyle: {
           backgroundColor: colors.green, 
         },
-        headerBackImageSource: require('./image/back.png') ,
+        headerBackVisible: false,
+        headerLeft: () => (
+          <TouchableOpacity onPress={() => navigation.pop()}>
+            <ArrowLeftIcon color={colors.white}/>
+          </TouchableOpacity>
+        ),
+      
         headerTitle: () => (
           <View style={styles.wrap}>
             <Text style={styles.title}>{route.params.item.fullName}</Text>
@@ -72,7 +71,12 @@ const TeamStack =()=>{
       <TeamStack.Screen 
       name="VIEW player info & Stats" component={PlayerInfoStatsScreen} 
       options={({ route }) => ({
-        headerBackImageSource: require('./image/back.png') ,
+        headerBackVisible: false,
+        headerLeft: () => (
+          <TouchableOpacity onPress={() => navigation.pop()}>
+            <ArrowLeftIcon color={colors.black}/>
+          </TouchableOpacity>
+        ),
         headerTitle: () => (
           <View style={styles.wrap}>
             <Text style={[styles.title, { color: 'black' }]}>{route.params.item.fullName}</Text>

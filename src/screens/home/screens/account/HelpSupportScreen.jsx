@@ -80,6 +80,14 @@ const styles = StyleSheet.create({
     borderRadius:12,
     padding: 15,
     marginBottom: 12,
+    shadowColor: colors.darkGrey,
+      shadowOffSet: {
+        with:0,
+        height:12,
+      },
+      shadowOpacity:0.58,
+      shadowRadius: 16.00,
+      elevation: 5,
     
   },
 
